@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'KaufmannBold';
+    src: url('fonts/KaufmannBold/KaufmannBold.eot');
+    src: url('fonts/KaufmannBold/KaufmannBold.eot') format('embedded-opentype'),
+         url('fonts/KaufmannBold/KaufmannBold.woff2') format('woff2'),
+         url('fonts/KaufmannBold/KaufmannBold.woff') format('woff'),
+         url('fonts/KaufmannBold/KaufmannBold.ttf') format('truetype'),
+         url('fonts/KaufmannBold/KaufmannBold.svg#KaufmannBold') format('svg');
+}
+
+.wp-logo {
+	font-family: 'KaufmannBold';
+	font-size: 40px !important;
+}
+
+.wp-logo-big {
+
+}
