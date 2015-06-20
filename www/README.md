@@ -1,6 +1,6 @@
 # Weepo - Home site
 
-Here is maintain the institutional and promotional site of Weepo. This includes the login,
+Here is maintained the institutional and promotional site of Weepo. This includes the login,
 the prices, etc..
 
 # Acknowledgements
