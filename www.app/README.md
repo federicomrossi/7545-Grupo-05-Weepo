@@ -1,4 +1,4 @@
-# Weepo - Home site
+# Weepo - Dashboard site
 
 Here is maintained the dashboard site, where the users 
 can manage their advertising campaigns and can keep track of the related statistics.
