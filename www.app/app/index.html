@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Weepo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" href="favicon.ico">
@@ -43,8 +43,8 @@
     <div class="wrapper">
       
       <!-- Header --> 
-      <div ng-include src="'app/components/core/header/headerView.html'" ng-controller="HeaderCtrl" >
-      </div>
+      <header ng-include src="'app/components/core/header/headerView.html'" ng-controller="HeaderCtrl" class="main-header">
+      </header>
 
       <!-- Left side column. contains the logo and sidebar -->
       <aside ng-include src="'app/components/core/sidebar/sidebarView.html'" ng-controller="SidebarCtrl" class="main-sidebar">
@@ -122,6 +122,7 @@
     <script src="app/app.routes.js"></script>
     <script src="app/components/core/header/headerController.js"></script>
     <script src="app/components/core/sidebar/sidebarController.js"></script>
+    <script src="app/components/core/sidebar/sidebarDirectives.js"></script>
     <script src="app/components/core/footer/footerController.js"></script>
     <script src="app/components/main/mainController.js"></script>
     <script src="app/components/about/aboutController.js"></script>

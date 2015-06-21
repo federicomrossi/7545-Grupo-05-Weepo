@@ -12,10 +12,9 @@ Follow these steps to tune up your development environment:
 
 1. Install [Node.js](https://nodejs.org/)
 2. Install [Compass](http://compass-style.org/)
-3. Install [YEOMAN](http://yeoman.io) following the steps described in [Getting started with Yeoman](http://yeoman.io/learning/)
-4. Execute in the command line the statement: `$ npm install -g yo bower grunt-cli gulp`
-5. Install node modules of the project with: `$ npm install`
-6. Install the dependences of the project with: `$ bower install`
+3. Execute in the command line the statement: `$ npm install -g yo bower grunt-cli gulp`
+4. Install node modules of the project with: `$ npm install`
+5. Install the dependences of the project with: `$ bower install`
 
 ### Build & development
 

@@ -15,6 +15,10 @@ angular.module('app')
         templateUrl: 'app/components/main/mainView.html',
         controller: 'MainCtrl'
       })
+      .when('/main', {
+        templateUrl: 'app/components/main/mainView.html',
+        controller: 'MainCtrl'
+      })
       .when('/about', {
         templateUrl: 'app/components/about/aboutView.html',
         controller: 'AboutCtrl'

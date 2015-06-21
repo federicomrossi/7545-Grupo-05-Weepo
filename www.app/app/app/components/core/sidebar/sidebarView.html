@@ -1,5 +1,6 @@
 <!-- sidebar: style can be found in sidebar.less -->
 <section class="sidebar">
+
   <!-- Sidebar user panel -->
   <div class="user-panel">
     <div class="pull-left image">
@@ -11,6 +12,7 @@
       <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
   </div>
+
   <!-- search form -->
   <form action="#" method="get" class="sidebar-form">
     <div class="input-group">
@@ -20,17 +22,22 @@
       </span>
     </div>
   </form>
+
   <!-- /.search form -->
   <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
     <li class="header">MENU</li>
-    <li class="active treeview">
-      <a href="#" prevent-default>
-        <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+    <li ng-repeat="item in menuItems" 
+        ng-class="{'treeview' : (item.subitems.length > 0)}" 
+        ng-switch="item.subitems.length > 0"
+    >
+      <a ng-href="{{ item.link }}">
+        <i class="fa {{ item.icon }}"></i> <span>{{ item.name }}</span> <i ng-switch-when="true" class="fa fa-angle-left pull-right"></i>
       </a>
-      <ul class="treeview-menu">
-        <li class="active"><a href="#/main"><i class="fa fa-circle-o"></i> Main</a></li>
-        <li><a href="#/about"><i class="fa fa-circle-o"></i> About</a></li>
+      <ul ng-switch-when="true" class="treeview-menu">
+        <li ng-repeat="subitem in item.subitems">
+          <a ng-href="{{ subitem.link }}"><i class="fa {{ subitem.icon }}"></i> {{ subitem.name }}</a>
+        </li>
       </ul>
     </li>
     
