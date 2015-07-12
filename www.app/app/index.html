@@ -39,23 +39,23 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="assets/libs/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   </head>
-  <body class="skin-blue sidebar-mini" ng-app="app">
+  <body class="skin-blue sidebar-mini" data-ng-app="app">
     <div class="wrapper">
       
       <!-- Header --> 
-      <header ng-include src="'app/components/core/header/headerView.html'" ng-controller="HeaderCtrl" class="main-header">
+      <header data-ng-include data-src="'app/components/core/header/headerView.html'" data-ng-controller="HeaderCtrl" class="main-header">
       </header>
 
       <!-- Left side column. contains the logo and sidebar -->
-      <aside ng-include src="'app/components/core/sidebar/sidebarView.html'" ng-controller="SidebarCtrl" class="main-sidebar">
+      <aside data-ng-include data-src="'app/components/core/sidebar/sidebarView.html'" data-ng-controller="SidebarCtrl" class="main-sidebar">
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" ng-view="">  
+      <div class="content-wrapper" data-ng-view="">  
       </div>
 
       <!-- Footer --> 
-      <footer ng-include src="'app/components/core/footer/footerView.html'" ng-controller="FooterCtrl" class="main-footer">
+      <footer data-ng-include data-src="'app/components/core/footer/footerView.html'" data-ng-controller="FooterCtrl" class="main-footer">
       </footer>
 
     </div><!-- ./wrapper -->
@@ -101,7 +101,7 @@
     <!-- Slimscroll -->
     <script src="assets/libs/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <!-- FastClick -->
-    <script src='assets/libs/fastclick/fastclick.min.js'></script>
+    <script src="assets/libs/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="assets/js/app.min.js" type="text/javascript"></script>
 

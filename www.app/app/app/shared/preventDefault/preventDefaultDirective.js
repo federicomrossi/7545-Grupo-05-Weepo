@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name app.directive:preventDefault
@@ -9,8 +7,10 @@
  */
 angular.module('app')
 	.directive('preventDefault', function() {
-		var linkFn = function (scope, element, attrs) {
-	        $(element).on("click", function (event){
+        'use strict';
+    
+		var linkFn = function (scope, element) {
+	        $(element).on('click', function (event) {
 	            event.preventDefault();
 	        });
 	    };
@@ -18,5 +18,5 @@ angular.module('app')
 	    return {
 	        restrict: 'A',
 	        link: linkFn
-	    }
+	    };
 	});

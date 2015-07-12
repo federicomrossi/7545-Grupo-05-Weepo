@@ -11,7 +11,7 @@ angular.module('app')
     .directive('activeMenuItem', function ($location) {
       return function ($scope, $el) {
         var links = $el.find('a'),
-            path = function(){ return $location.path(); }
+            path = function() { return $location.path(); };
 
         function addActiveClass (links, path) {
 
@@ -30,7 +30,7 @@ angular.module('app')
         addActiveClass(links, $location.path());
     
         $scope.$watch(path, function (newValue, oldValue) {
-            if (newValue === oldValue) return;
+            if (newValue === oldValue) { return; }
             addActiveClass(links, $location.path());
         });
       };

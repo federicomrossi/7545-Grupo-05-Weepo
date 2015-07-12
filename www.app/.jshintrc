@@ -18,6 +18,12 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+    "angular": true,
+    "browser": true,
+    "element": true,
+    "by": true,
+    "io": true,
+    "_": true,
+    "$": true
   }
 }
