@@ -39,7 +39,10 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="assets/libs/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   </head>
-  <body class="skin-blue sidebar-mini" data-ng-app="app">
+  <body class="skin-blue sidebar-mini" 
+        data-ng-class="{ 'wp-login': !isLoggedin }"
+        data-ng-app="app">
+
     <div class="wrapper">
       
       <!-- Header --> 
@@ -57,7 +60,8 @@
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div data-ng-class="{'content-wrapper': isLoggedin}"
+      <div id="content-wrapper" 
+           data-ng-class="{ 'content-wrapper': isLoggedin }"
            data-ng-view="">
       </div>
 

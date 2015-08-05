@@ -21,7 +21,19 @@
 	margin-top: 20px;
 }
 
-.wp-input-big {
-	font-size: 20px;
-	height: 40px;
+.wp-login {
+    margin-top: 10vh;
+}
+
+.wp-login div#content-wrapper {
+    background-color: #fff;
+}
+
+.wp-login div#content-wrapper form input[type='text'],
+.wp-login div#content-wrapper form input[type='password'] {
+    font-size: 20px;
+    height: 40px;
+}
+
+.wp-login div#content-wrapper form input[type='submit'] {
 }
