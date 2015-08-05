@@ -31,6 +31,7 @@ angular.module('app')
         // Error: authentication failed
         $scope.message = 'El usuario y/o contraseña son inválidos. Por favor vuelva a ingresarlos correctamente.';
         $scope.loginFailed = true;
+        $scope.user.password = "";
       });
     };
   });
