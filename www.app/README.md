@@ -1,7 +1,7 @@
-# Weepo - Dashboard site
+# Weepo - RESTfull API
 
-Here is maintained the dashboard site, where the users 
-can manage their advertising campaigns and can keep track of the related statistics.
+Here is maintained the API of Weepo, used by the dashboard site as a service to
+login the users into the dashboard and get the data.
 
 
 ## Development
@@ -11,23 +11,15 @@ can manage their advertising campaigns and can keep track of the related statist
 Follow these steps to tune up your development environment:
 
 1. Install [Node.js](https://nodejs.org/)
-2. Install [Compass](http://compass-style.org/)
-3. Execute in the command line the statement: `$ npm install -g yo bower grunt-cli gulp`
-4. Install node modules of the project with: `$ npm install`
-5. Install the dependences of the project with: `$ bower install`
+2. Install node modules of the project with: `$ npm install`
+3. Enter to the `public/` directory and install the dependences of the project with: `$ bower install`
 
-### Build & development
+### Run
 
-Run `grunt` for building and `grunt serve` for preview.
-
-### Testing
-
-Running `grunt test` will run the unit tests with karma.
-
+Run the server executing : `$ npm start`
 
 ## Acknowledgements
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+The project base was developed by [Kevin Vicrey (Anomen)](https://github.com/Anomen) in [https://github.com/Anomen/AuthenticationAngularJS](https://github.com/Anomen/AuthenticationAngularJS).
 
 

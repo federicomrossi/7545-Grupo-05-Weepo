@@ -1,0 +1,11 @@
+{
+	"bd": {
+		"host": "localhost",
+		"port": 3306,
+		"authKey": "",
+		"db": "weepo"
+	},
+	"express": {
+		"port": 3000
+	}
+}
