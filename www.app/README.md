@@ -1,7 +1,7 @@
-# Weepo - RESTfull API
+# Weepo - Server
 
-Here is maintained the API of Weepo, used by the dashboard site as a service to
-login the users into the dashboard and get the data.
+Here is maintained the server of Weepo, used to serve the dashboard site used by
+users to manage their campaings.
 
 
 ## Development
