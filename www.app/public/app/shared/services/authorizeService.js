@@ -14,8 +14,12 @@ angular.module('app').factory('authorizeService', function ($rootScope, $q, $tim
     return {
 
         // Function to login into the server
-        login: function() {
+        login: function(user, pass) {
 
+            return $http.post('/login', {
+                    username: user,
+                    password: pass,
+                });
         },
 
         // The server session is closed.
@@ -46,7 +50,7 @@ angular.module('app').factory('authorizeService', function ($rootScope, $q, $tim
 
         // Returns a promise that checks if the users has been logged.
         // If not, it will be redirected to the login section
-        checkLoggedin: function($q, $timeout, $http, $location, $scope){
+        checkLoggedin: function($q, $timeout, $http, $location, $rootScope){
             
             // Initialize a new promise
             var deferred = $q.defer();

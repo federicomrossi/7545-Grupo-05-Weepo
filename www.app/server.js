@@ -51,7 +51,7 @@ app.set('port', process.env.PORT || config.express.port);
 app.set('views', __dirname + '/public');
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.favicon());
+app.use(express.favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(express.logger('dev'));
 app.use(express.cookieParser()); 
 app.use(express.bodyParser());

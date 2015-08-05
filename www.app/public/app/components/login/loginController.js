@@ -21,10 +21,7 @@ angular.module('app')
 
     // Register the login() function
     $scope.login = function(){
-      $http.post('/login', {
-        username: $scope.user.username,
-        password: $scope.user.password,
-      })
+      authorizeService.login($scope.user.username, $scope.user.password)
       .success(function(user){
         // No error: authentication OK
         $scope.message = 'Autenticación satisfactoria!';
