@@ -43,19 +43,30 @@
     <div class="wrapper">
       
       <!-- Header --> 
-      <header data-ng-include data-src="'app/components/core/header/headerView.html'" data-ng-controller="HeaderCtrl" class="main-header">
+      <header data-ng-if="isLoggedin"
+              data-ng-include data-src="'app/components/core/header/headerView.html'" 
+              data-ng-controller="HeaderCtrl" 
+              class="main-header">
       </header>
 
       <!-- Left side column. contains the logo and sidebar -->
-      <aside data-ng-include data-src="'app/components/core/sidebar/sidebarView.html'" data-ng-controller="SidebarCtrl" class="main-sidebar">
+      <aside data-ng-if="isLoggedin"
+             data-ng-include data-src="'app/components/core/sidebar/sidebarView.html'" 
+             data-ng-controller="SidebarCtrl" 
+             class="main-sidebar">
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" data-ng-view="">  
+      <div data-ng-class="{'content-wrapper': isLoggedin}"
+           data-ng-view="">
       </div>
 
       <!-- Footer --> 
-      <footer data-ng-include data-src="'app/components/core/footer/footerView.html'" data-ng-controller="FooterCtrl" class="main-footer">
+      <footer data-ng-if="isLoggedin"
+              data-ng-include 
+              data-src="'app/components/core/footer/footerView.html'" 
+              data-ng-controller="FooterCtrl" 
+              class="main-footer">
       </footer>
 
     </div><!-- ./wrapper -->
@@ -120,13 +131,15 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
+    <script src="app/shared/services/authorizeService.js"></script>
+    <script src="app/shared/preventDefault/preventDefaultDirective.js"></script>
+    <script src="app/components/login/loginController.js"></script>
     <script src="app/components/core/header/headerController.js"></script>
     <script src="app/components/core/sidebar/sidebarController.js"></script>
     <script src="app/components/core/sidebar/sidebarDirectives.js"></script>
     <script src="app/components/core/footer/footerController.js"></script>
     <script src="app/components/main/mainController.js"></script>
     <script src="app/components/about/aboutController.js"></script>
-    <script src="app/shared/preventDefault/preventDefaultDirective.js"></script>
     <!-- endbuild -->
 
 </body>

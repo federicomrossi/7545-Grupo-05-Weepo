@@ -14,7 +14,7 @@ var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(
   function(username, password, done) {
     if (username === "admin" && password === "admin") // stupid example
-      return done(null, {name: "admin"});
+      return done(null, {id: "1", username: "admin", name: "Tito Esperanza"});
 
     return done(null, false, { message: 'Incorrect username.' });
   }

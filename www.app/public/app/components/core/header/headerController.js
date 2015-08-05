@@ -8,6 +8,8 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('HeaderCtrl', function ($scope) {
-  	
+  .controller('HeaderCtrl', function ($scope, authorizeService) {
+  		$scope.logout = function() {
+  			authorizeService.logout();
+  		};
   });
