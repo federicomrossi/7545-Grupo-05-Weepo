@@ -8,6 +8,17 @@
          url('fonts/KaufmannBold/KaufmannBold.svg#KaufmannBold') format('svg');
 }
 
+
+.wp-card {
+    background-color: #f7f7f7;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 30px 30px;
+    width: 400px;
+    margin: 0 auto;
+}
+
 .wp-logo {
 	font-family: 'KaufmannBold';
 	font-size: 40px !important;
@@ -17,12 +28,34 @@
 	font-size: 80px !important;
 }
 
+.wp-text-small {
+    font-size: 0.98em;
+}
+
+.wp-space-med-bottom {
+    margin-bottom: 20px;
+}
+
+.wp-space-small-bottom {
+    margin-bottom: 10px;
+}
+
 .wp-space-med-top {
-	margin-top: 20px;
+    margin-top: 20px;
+}
+
+.wp-space-small-top {
+    margin-top: 10px;
 }
 
 .wp-login {
     margin-top: 10vh;
+}
+
+.wp-login h2 {
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #777;
 }
 
 .wp-login div#content-wrapper {
@@ -31,9 +64,7 @@
 
 .wp-login div#content-wrapper form input[type='text'],
 .wp-login div#content-wrapper form input[type='password'] {
-    font-size: 20px;
+    font-size: 18px;
     height: 40px;
-}
-
-.wp-login div#content-wrapper form input[type='submit'] {
+    margin-top: 5px;
 }

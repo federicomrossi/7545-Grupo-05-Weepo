@@ -8,7 +8,7 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('LoginCtrl', function ($scope, $rootScope, $http, $location, authorizeService) {
+  .controller('LoginCtrl', function ($scope, $http, $location, authorizeService) {
 
     // If it's already loggedin, we redirect to the main page.
     authorizeService.isLoggedin(function() {
@@ -27,13 +27,13 @@ angular.module('app')
       })
       .success(function(user){
         // No error: authentication OK
-        $rootScope.message = 'Authentication successful!';
+        $scope.message = 'Autenticación satisfactoria!';
         $location.url('/');
       })
       .error(function(){
         // Error: authentication failed
-        $rootScope.message = 'Authentication failed.';
-        $location.url('/login');
+        $scope.message = 'El usuario y/o contraseña son inválidos. Por favor vuelva a ingresarlos correctamente.';
+        $scope.loginFailed = true;
       });
     };
   });
