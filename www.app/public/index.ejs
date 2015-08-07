@@ -43,32 +43,35 @@
         data-ng-class="{ 'wp-login': !isLoggedin }"
         data-ng-app="app">
 
-    <div class="wrapper">
+    <div id="login-page" class="wrapper" data-ng-if="!isLoggedin">
+      <!-- Content Wrapper. Contains page content -->
+      <div id="content-wrapper"
+           data-ng-view="">
+      </div>
+    </div>      
+
+    <div id="dashboard-page" class="wrapper" data-ng-if="isLoggedin">
       
       <!-- Header --> 
-      <header data-ng-if="isLoggedin"
-              data-ng-include data-src="'app/components/core/header/headerView.html'" 
+      <header data-ng-include data-src="'app/components/core/header/headerView.html'" 
               data-ng-controller="HeaderCtrl" 
               class="main-header">
       </header>
 
       <!-- Left side column. contains the logo and sidebar -->
-      <aside data-ng-if="isLoggedin"
-             data-ng-include data-src="'app/components/core/sidebar/sidebarView.html'" 
+      <aside data-ng-include data-src="'app/components/core/sidebar/sidebarView.html'" 
              data-ng-controller="SidebarCtrl" 
              class="main-sidebar">
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
       <div id="content-wrapper" 
-           data-ng-class="{ 'content-wrapper': isLoggedin }"
+           class="content-wrapper"
            data-ng-view="">
       </div>
 
       <!-- Footer --> 
-      <footer data-ng-if="isLoggedin"
-              data-ng-include 
-              data-src="'app/components/core/footer/footerView.html'" 
+      <footer data-ng-include data-src="'app/components/core/footer/footerView.html'" 
               data-ng-controller="FooterCtrl" 
               class="main-footer">
       </footer>
