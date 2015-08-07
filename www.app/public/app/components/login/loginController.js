@@ -17,14 +17,22 @@ angular.module('app')
 
     // In other case
     $scope.isLoggedin = false;
-    $scope.user = {}; // This object will be filled by the form
+    $scope.user = {};               // This object will be filled by the form
+    $scope.loginAttempts = 0;       // Attempts counter
 
     // Register the login() function
     $scope.login = function(){
+      
+      $scope.loginFailed = false;
+
+      // TASK: This will be changed to check the number of attempts, and if it exceeds
+      // a maximum, the user login will be blocked for a while to avoid brute
+      // force attacks
+      $scope.loginAttempts++;
+
       authorizeService.login($scope.user.username, $scope.user.password)
       .success(function(user){
         // No error: authentication OK
-        $scope.message = 'Autenticación satisfactoria!';
         $location.url('/');
       })
       .error(function(){
