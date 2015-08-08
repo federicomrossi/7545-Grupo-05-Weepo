@@ -22,6 +22,7 @@
 .wp-logo {
 	font-family: 'KaufmannBold';
 	font-size: 40px !important;
+  color: #fff;
 }
 
 .wp-logo-big {
@@ -49,17 +50,17 @@
 }
 
 .wp-login {
-    margin-top: 10vh;
+    margin-top: 5%;
 }
 
 .wp-login h2 {
-    font-family: sans-serif;
-    font-size: 20px;
-    color: #777;
+    font-size: 23px;
+    color: #bbb;
+    margin: 20px 0px 30px 0px;
 }
 
 .wp-login div#content-wrapper {
-    background-color: #fff;
+    background-color: none;
 }
 
 .wp-login div#content-wrapper form input[type='text'],
@@ -69,7 +70,6 @@
     height: 40px;
     margin-top: 5px;
 }
-
 
 
 /*
