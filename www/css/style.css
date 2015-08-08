@@ -1,3 +1,4 @@
+
 /*
 Template Name: SinglePro - Multipurpose Bootstrap HTML5/CSS3 One Page Template
 Template URI:http://www.wpfreeware.com/themes/premium/singlepro/
@@ -29,26 +30,80 @@ Tags: light, white, landing page,single page,Multipurpose,custom-colors,Bootstra
 
 @font-face {
     font-family: 'KaufmannBold';
-    src: url('fonts/KaufmannBold/KaufmannBold.eot');
-    src: url('fonts/KaufmannBold/KaufmannBold.eot') format('embedded-opentype'),
-         url('fonts/KaufmannBold/KaufmannBold.woff2') format('woff2'),
-         url('fonts/KaufmannBold/KaufmannBold.woff') format('woff'),
-         url('fonts/KaufmannBold/KaufmannBold.ttf') format('truetype'),
-         url('fonts/KaufmannBold/KaufmannBold.svg#KaufmannBold') format('svg');
+    src: url('../fonts/KaufmannBold/KaufmannBold.eot');
+    src: url('../fonts/KaufmannBold/KaufmannBold.eot') format('embedded-opentype'),
+         url('../fonts/KaufmannBold/KaufmannBold.woff2') format('woff2'),
+         url('../fonts/KaufmannBold/KaufmannBold.woff') format('woff'),
+         url('../fonts/KaufmannBold/KaufmannBold.ttf') format('truetype'),
+         url('../fonts/KaufmannBold/KaufmannBold.svg#KaufmannBold') format('svg');
 }
 
 
 .wp-logo {
   font-family: 'KaufmannBold';
-  font-size: 50px !important;
   font-weight: normal;
   color: #fff !important;
+}
+
+.wp-logo-med {
+  font-size: 50px !important;
+}
+
+.wp-logo-small {
+  font-size: 30px !important;
 }
 
 .wp-logo-big {
   font-size: 80px !important;
 }
 
+.wp-button-transparent:link,
+.wp-button-transparent:visited,
+.wp-button-transparent:active {
+  border: 1px solid #fff;
+  border-radius: 3px;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  padding: 10px 15px !important;
+
+  -webkit-transition: background-color 500ms;
+     -moz-transition: background-color 500ms;
+       -o-transition: background-color 500ms;
+      -ms-transition: background-color 500ms;
+          transition: background-color 500ms;
+
+  -webkit-transition: border 500ms;
+     -moz-transition: border 500ms;
+       -o-transition: border 500ms;
+      -ms-transition: border 500ms;
+          transition: border 500ms;
+
+  -webkit-transition: color 500ms;
+     -moz-transition: color 500ms;
+       -o-transition: color 500ms;
+      -ms-transition: color 500ms;
+          transition: color 500ms;
+}
+
+.wp-button-transparent:hover {
+  background: rgba(0,0,0, 0.3) !important;
+  border: 1px solid #9AAEEF !important;
+  color: #9AAEEF !important;
+}
+
+.wp-li-hspace-right {
+  margin-left: 50px;
+}
+
+li:not(.active) a:link,
+li:not(.active) a:visited,
+li:not(.active) a:active {
+    color: #fff !important;
+}
+
+li:not(.active) a:hover {
+  color: #9AAEEF !important;
+}
 
 
 /*--------------------*/
