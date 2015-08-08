@@ -8,6 +8,6 @@ www.app.old
 *.aux
 *.log
 *.pdf
-*.syntex.gz
+*.gz
 *.toc
 .fuse_hidden*
