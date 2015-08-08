@@ -29,12 +29,12 @@ Tags: light, white, landing page,single page,Multipurpose,custom-colors,Bootstra
 
 @font-face {
     font-family: 'KaufmannBold';
-    src: url('css/fonts/KaufmannBold/KaufmannBold.eot');
-    src: url('css/fonts/KaufmannBold/KaufmannBold.eot') format('embedded-opentype'),
-         url('css/fonts/KaufmannBold/KaufmannBold.woff2') format('woff2'),
-         url('css/fonts/KaufmannBold/KaufmannBold.woff') format('woff'),
-         url('css/fonts/KaufmannBold/KaufmannBold.ttf') format('truetype'),
-         url('css/fonts/KaufmannBold/KaufmannBold.svg#KaufmannBold') format('svg');
+    src: url('fonts/KaufmannBold/KaufmannBold.eot');
+    src: url('fonts/KaufmannBold/KaufmannBold.eot') format('embedded-opentype'),
+         url('fonts/KaufmannBold/KaufmannBold.woff2') format('woff2'),
+         url('fonts/KaufmannBold/KaufmannBold.woff') format('woff'),
+         url('fonts/KaufmannBold/KaufmannBold.ttf') format('truetype'),
+         url('fonts/KaufmannBold/KaufmannBold.svg#KaufmannBold') format('svg');
 }
 
 
