@@ -12,7 +12,7 @@ Follow these steps to tune up your development environment:
 
 1. Install [Node.js](https://nodejs.org/)
 2. Install node modules of the project with: `$ npm install`
-3. Enter to the `public/` directory and install the dependences of the project with: `$ bower install`
+3. Enter to the `public/` directory and install the dependences of the project with: `$ bower install`. If the bower_components directory was not created with this command, execute instead `$ sudo bower install --allow-root`.
 
 ### Run
 
