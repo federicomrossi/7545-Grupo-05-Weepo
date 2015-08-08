@@ -42,9 +42,9 @@ angular.module('app')
           isLoggedin: checkLoggedin
         }
       })
-      .when('/about', {
-        templateUrl: 'app/components/about/aboutView.html',
-        controller: 'AboutCtrl',
+      .when('/clients', {
+        templateUrl: 'app/components/clients/clientsView.html',
+        //controller: 'clientsCtrl',
         resolve: {
           isLoggedin: checkLoggedin
         }

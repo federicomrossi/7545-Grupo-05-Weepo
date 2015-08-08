@@ -5,3 +5,9 @@ dist
 bower_components
 .backets.json
 www.app.old
+*.aux
+*.log
+*.pdf
+*.syntex.gz
+*.toc
+.fuse_hidden*
