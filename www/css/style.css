@@ -467,16 +467,19 @@ img{
 
 .slider_caption > h2 {
   color: #ffffff;
-  font-size: 65px;
+  font-size: 55px;
   font-weight: 700;
   line-height: 76px;
   margin: 0 auto 10px;
   padding-bottom: 8px;
   text-align: center;
   text-transform: uppercase;
-  width: 90%;
+  width: 95%;
 }
 
+.slider_caption > h2 > span {
+  color: #9FD8EA;
+}
 
 .slider_caption>p{
 	color: #ffffff;
