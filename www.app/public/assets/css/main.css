@@ -42,12 +42,20 @@
     margin-bottom: 10px !important;
 }
 
+.wp-space-very-small-bottom {
+    margin-bottom: 5px !important;
+}
+
 .wp-space-med-top {
     margin-top: 20px !important;
 }
 
 .wp-space-small-top {
     margin-top: 10px !important;
+}
+
+.wp-space-very-small-top {
+    margin-top: 5px !important;
 }
 
 .wp-login {
