@@ -4,21 +4,61 @@ var http = require('http');
 var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
-
+var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
+var GoogleStrategy = require('passport-google').Strategy;
+var user = require('./public/app/shared/controllers/UsersController.js');
 
 //
 //  Define the strategy to be used by PassportJS
 //
-
 passport.use(new LocalStrategy(
   function(username, password, done) {
+
+    user.isRegistered(username, function(result) {
+        console.log("result:", result);
+        if ((result === null) || (result === 'undefined')) {
+          return false;
+        }
+        if (password == result.password) {
+          return done(null, {'id': "1", 'username': username, 'name': "Fabri"});    
+        } else {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+    });
+
+      
+  
+
+/*
     if (username === "admin" && password === "admin") // stupid example
       return done(null, {id: "1", username: "admin", name: "Tito Esperanza"});
 
     return done(null, false, { message: 'Incorrect username.' });
+  }*/
+}));
+
+
+
+
+passport.use(new GoogleStrategy({
+    returnURL: 'http://www.example.com/auth/google/return',
+    realm: 'http://www.example.com/'
+  },
+  function(identifier, profile, done) {
+    User.findOrCreate({ openId: identifier }, function(err, user) {
+      done(err, user);
+    });
   }
 ));
+
+
+
+
+
+
+
+
 
 // Serialized and deserialized methods when got from session
 passport.serializeUser(function(user, done) {
