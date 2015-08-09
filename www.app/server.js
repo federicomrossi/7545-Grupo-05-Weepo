@@ -21,21 +21,11 @@ passport.use(new LocalStrategy(
           return false;
         }
         if (password == result.password) {
-          return done(null, {'id': "1", 'username': username, 'name': "Fabri"});    
+          return done(null, {'id': result.user_id, 'username': username, 'name': result.name + " " + result.last_name});    
         } else {
           return done(null, false, { message: 'Incorrect username.' });
         }
     });
-
-      
-  
-
-/*
-    if (username === "admin" && password === "admin") // stupid example
-      return done(null, {id: "1", username: "admin", name: "Tito Esperanza", company: "Coca-Cola Argentina"});
-
-    return done(null, false, { message: 'Incorrect username.' });
-  }*/
 }));
 
 
