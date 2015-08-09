@@ -29,12 +29,19 @@ angular.module('app')
         //      { 'name': 'Subitem2',	'link': '#/main/about',	'icon': 'fa-circle-o'}
         // ]},
 
-        { 'name': 'Main', 'link': '#/main', 'icon': 'fa-dashboard', 'subitems': [
+        { 'name': 'Inicio', 'link': '#/main', 'icon': 'fa-newspaper-o', 'subitems': [
         ]},
-        { 'name': 'About', 'link': '#/about', 'icon': 'fa-info', 'subitems': [
+        { 'name': 'Administrar campañas', 'link': '#/campaigns', 'icon': 'fa-line-chart', 'subitems': [
         ]},
-        { 'name': 'Clients', 'link': '#/clients', 'icon': 'fa-share-alt-square', 'subitems': [
+        { 'name': 'Administrar eventos', 'link': '#/events', 'icon': 'fa-calendar-check-o', 'subitems': [
+        ]},
+        { 'name': 'Asistente de Marketing', 'link': '#/assistence', 'icon': 'fa-user', 'subitems': [
+        ]},
+        { 'name': 'Administrar Plan', 'link': '#/plans', 'icon': 'fa-credit-card', 'subitems': [
+        ]},
+        { 'name': 'Configuración general', 'link': '#/config', 'icon': 'fa-cog', 'subitems': [
         ]}
+
     ];
 
   });

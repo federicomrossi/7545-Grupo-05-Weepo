@@ -27,7 +27,7 @@ body, .content-wrapper, #login-page {
 
         <div class="wp-card wp-space-med-top">
 
-            <div class="text-danger wp-space-med-bottom fadein fadeout" data-ng-show="loginFailed">
+            <div class="text-danger fadein fadeout" data-ng-show="loginFailed">
               <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
               {{ message }}
             </div>
@@ -40,39 +40,35 @@ body, .content-wrapper, #login-page {
                         <input name="email" id="email" type="text" placeholder="Email o Nombre de usuario" class="form-control" ng-model="user.username" required />
 
                         <input name="password" id="password" type="password" placeholder="Contraseña" class="form-control" ng-model="user.password" required />
+                        <p class="text-right"><a href="#/" class="wp-text-small">¿Ha olvidado su contraseña?</a></p>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <div class=" col-md-12 text-center">
                         <input type="submit" value="Acceder" class="btn btn-primary btn-block btn-lg" />
-                        <p class="text-center wp-space-small-top"><a href="#/" class="wp-text-small">¿Necesitas ayuda?</a></p>
                     </div>
                 </div> 
               </fieldset>
+            </form>
 
-              <fieldset>
-                <div class="col-lg-12" style="padding-top: 5px;">
-                  <a class="btn btn-block btn-social btn-twitter">
-                    <i class="fa fa-twitter"></i> Acceder con Twitter
-                  </a>              
-                </div>
-            
-                <div class="col-lg-12" style="padding-top: 5px;">
-                  <a class="btn btn-block btn-social btn-facebook">
-                    <i class="fa fa-facebook"></i> Acceder con Facebook
-                  </a>              
-                </div>
+            <div class="wp-hr wp-space-med-bottom wp-space-med-top">
+              <span>O inicia sesión con tu cuenta de</span>
+            </div>
 
-                <div class="col-lg-12" style="padding-top: 5px; padding-bottom: 25px">
-                  <a class="btn btn-block btn-social btn-google-plus" href="/auth/google">
-                    <i class="fa fa-google-plus"></i> Acceder con Google+
-                  </a>              
-                </div>
-
-              </fieldset>
-                
-            </form>         
+            <div class="wp-social-networks-bar">
+              <div class="text-center">
+                <a class="btn btn-block btn-social-icon btn-twitter">
+                  <i class="fa fa-twitter"></i><!--  Acceder con Twitter -->
+                </a>              
+                <a class="btn btn-block btn-social-icon btn-facebook">
+                  <i class="fa fa-facebook"></i><!--  Acceder con Facebook -->
+                </a>              
+                <a class="btn btn-block btn-social-icon btn-google-plus" href="/auth/google">
+                  <i class="fa fa-google-plus"></i><!--  Acceder con Google+ -->
+                </a>              
+              </div>
+            </div>  
         </div>
     </div><!-- /.row -->
 
