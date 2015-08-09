@@ -8,7 +8,7 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('SidebarCtrl', function ($scope, $element, $attrs, $location) {
+  .controller('SidebarCtrl', function ($scope, $element, $attrs, $location, authorizeService) {
   	
 
 	$scope.menuItems = [

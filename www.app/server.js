@@ -32,7 +32,7 @@ passport.use(new LocalStrategy(
 
 /*
     if (username === "admin" && password === "admin") // stupid example
-      return done(null, {id: "1", username: "admin", name: "Tito Esperanza"});
+      return done(null, {id: "1", username: "admin", name: "Tito Esperanza", company: "Coca-Cola Argentina"});
 
     return done(null, false, { message: 'Incorrect username.' });
   }*/
