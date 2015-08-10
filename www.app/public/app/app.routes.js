@@ -49,6 +49,13 @@ angular.module('app')
           isLoggedin: checkLoggedin
         }
       })
+      .when('/events', {
+        templateUrl: 'app/components/events/eventsView.html',
+        controller: 'EventsCtrl',
+        resolve: {
+          isLoggedin: checkLoggedin
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });
