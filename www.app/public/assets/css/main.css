@@ -20,6 +20,45 @@
     margin-bottom: 25px !important;
 }
 
+.wp-description-card {
+    background-color: #f7f7f7;
+    border-radius: 2px;
+    border: 1px solid #bbb;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 15px 15px 15px 15px !important;
+    margin: 10px;
+}
+
+.wp-description-card h5 {
+    font-size: 20px;
+    color: #555;
+    font-weight: bold;
+}
+
+.wp-description-card hr {
+    margin: 10px 0px;
+    padding: 0px;
+    border-color: #ddd !important;
+}
+
+.wp-description-card .wp-img-container {
+  max-width: 100%;
+  height: 150px;
+  background-color: #fff;
+  text-align: center;
+}
+
+  .wp-description-card .wp-img-container img {
+    max-width: 100%;
+    max-height: 150px;
+    margin: 0 auto;
+  }
+
+.wp-description-card p {
+  margin-top: 10px;
+  margin-bottom: 20px
+}
+
 .wp-logo {
 	font-family: 'KaufmannBold';
 	font-size: 40px !important;
@@ -105,6 +144,122 @@
   margin: 3px;
 }
 
+.wp-sep-tag-bottom {
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+
+.wp-btn-icon {
+  font-size: 30px !important;
+}
+
+.wp-label-fixed {
+  width: 50px !important;
+}
+
+
+/*--------------------*/
+/* TEAM SECTION */
+/*--------------------*/
+
+
+#team{
+  float: left;
+  display: inline;
+  width: 100%;
+  padding-bottom: 30px; 
+}
+
+
+.team_area{
+  float: left;
+  display: inline;
+  width: 93%;
+  cursor: pointer;
+}
+
+
+.team_slider{
+  float: left;
+  display: inline;
+  width: 100%;
+}
+
+/*
+.team_slider .slick-next,
+.team_slider .slick-prev{
+  height: 30px;
+
+}*/
+
+
+.single_team {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  display: inline;
+  float: left;
+
+  text-align: center;
+  width: 100%;
+}
+
+
+.team_img{
+  float: left;
+  display: block;
+  width: 100%;
+}
+
+
+.team_img > img {
+  border-radius: 100%;
+  height: 150px;
+  margin: 0 auto 15px;
+  width: 150px;
+}
+
+
+.single_team h5 {
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 18px;
+  text-transform: uppercase;
+  font-size: 17px;
+}
+
+
+.single_team span {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+
+.single_team p {
+  line-height: 26px;
+}
+
+.team_slider .slick-prev, .team_slider .slick-next {
+  font-size: 35px;
+  color: #444;
+  top: 45%;
+}
+
+.team_slider .slick-prev {
+  left: -10px;
+}
+
+.team_slider .slick-next {
+  right: -10px;
+}
+
+
+.team_slider .slick-dots li button:before {
+  font-size: 70px;
+}
 
 
 /*

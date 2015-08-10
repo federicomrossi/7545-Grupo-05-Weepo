@@ -23,8 +23,6 @@ angular.module('app')
     // Register the login() function
     $scope.login = function(){
       
-      $scope.loginFailed = false;
-
       // TASK: This will be changed to check the number of attempts, and if it exceeds
       // a maximum, the user login will be blocked for a while to avoid brute
       // force attacks
