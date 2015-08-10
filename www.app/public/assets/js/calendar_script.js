@@ -34,6 +34,7 @@ $(function () {
           m = date.getMonth(),
           y = date.getFullYear();
   $('#calendar').fullCalendar({
+    lang: 'es',
     header: {
       left: 'prev,next today',
       center: 'title',
