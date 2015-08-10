@@ -1,6 +1,11 @@
 'use strict';
 $(function () {
 
+
+  function capitalizeFirstLetter(str) {
+      return str[0].toUpperCase() + string.slice(1);
+  }
+
   /* initialize the external events
    -----------------------------------------------------------------*/
   function ini_events(ele) {
@@ -41,43 +46,35 @@ $(function () {
       right: 'month,agendaWeek,agendaDay'
     },
     buttonText: {
-      today: 'today',
-      month: 'month',
-      week: 'week',
-      day: 'day'
+      today: 'hoy',
+      month: 'mes',
+      week: 'semana',
+      day: 'día'
     },
     //Random default events
     events: [
       {
-        title: 'All Day Event',
+        title: 'Promoción en Twitter',
         start: new Date(y, m, 1),
         backgroundColor: "#f56954", //red
         borderColor: "#f56954" //red
       },
       {
-        title: 'Long Event',
+        title: 'Campaña de donaciones',
         start: new Date(y, m, d - 5),
         end: new Date(y, m, d - 2),
         backgroundColor: "#f39c12", //yellow
         borderColor: "#f39c12" //yellow
       },
       {
-        title: 'Meeting',
+        title: 'Junta con asistente de maketing',
         start: new Date(y, m, d, 10, 30),
         allDay: false,
         backgroundColor: "#0073b7", //Blue
         borderColor: "#0073b7" //Blue
       },
       {
-        title: 'Lunch',
-        start: new Date(y, m, d, 12, 0),
-        end: new Date(y, m, d, 14, 0),
-        allDay: false,
-        backgroundColor: "#00c0ef", //Info (aqua)
-        borderColor: "#00c0ef" //Info (aqua)
-      },
-      {
-        title: 'Birthday Party',
+        title: 'Concurso facebook',
         start: new Date(y, m, d + 1, 19, 0),
         end: new Date(y, m, d + 1, 22, 30),
         allDay: false,
@@ -85,9 +82,9 @@ $(function () {
         borderColor: "#00a65a" //Success (green)
       },
       {
-        title: 'Click for Google',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
+        title: 'Maraton',
+        start: new Date(y, m, 28, 17),
+        end: new Date(y, m, 29, 21),
         url: 'http://google.com/',
         backgroundColor: "#3c8dbc", //Primary (light-blue)
         borderColor: "#3c8dbc" //Primary (light-blue)
