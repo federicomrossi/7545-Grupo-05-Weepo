@@ -348,8 +348,11 @@
     // Do a random walk
     while (data.length < totalPoints) {
 
-      var prev = data.length > 0 ? data[data.length - 1] : 50,
-              y = prev + Math.random() * 10 - 5;
+      //var prev = data.length > 0 ? data[data.length - 1] : 50,
+      //y = prev + Math.random() * 10 - 5;
+
+      var y = (Math.random() * 10) - 5;
+
 
       if (y < 0) {
         y = 0;
@@ -385,7 +388,7 @@
     },
     yaxis: {
       min: 0,
-      max: 100,
+      max: 30,
       show: true
     },
     xaxis: {
@@ -393,7 +396,7 @@
     }
   });
 
-  var updateInterval = 500; //Fetch data ever x milliseconds
+  var updateInterval = 1000; //Fetch data ever x milliseconds
   var realtime = "on"; //If == to on then fetch data every x seconds. else stop fetching
   function update() {
 
@@ -422,5 +425,18 @@
   /*
    * END INTERACTIVE CHART
    */
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 })(jQuery, $.AdminLTE);
