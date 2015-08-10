@@ -29,10 +29,8 @@ jQuery(function($){
 	/* ----------------------------------------------------------- */
 	/*  1. Superslides Slider
 	/* ----------------------------------------------------------- */
-	jQuery('#slides').superslides({
-      animation: 'slide',
-      play: '5000'
-    });
+	jQuery('#slides').superslides({});
+	jQuery('#slides').superslides('stop');
 	
 	
 	/* ----------------------------------------------------------- */
