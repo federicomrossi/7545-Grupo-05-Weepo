@@ -2,13 +2,24 @@
 
 /**
  * @ngdoc function
- * @name app.controller:LoginCtrl
+ * @name app.controller:RegisterCtrl
  * @description
- * # LoginCtrl
+ * # RegisterCtrl
  * Controller of the app
  */
 angular.module('app')
-  .controller('RegisterCtrl', function ($scope, $http, $location, authorizeService) {
+  .controller('RegisterCtrl', function ($scope, $http, $location, registerService) {
 
- 
+    $scope.newUser = {};
+
+    $scope.submit = function(){
+      registerService.create($scope.newUser).then(
+        function (response) {
+          console.log(response)         
+        },
+        function(response){
+          console.log(response)         
+          $location.url('/');
+        });
+    }
   });

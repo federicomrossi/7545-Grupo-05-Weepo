@@ -21,6 +21,10 @@ angular.module('app')
         templateUrl: 'app/components/login/loginView.html',
         controller: 'LoginCtrl'
       })
+      .when('/register', {
+        templateUrl: 'app/components/register/registerView.html',
+        controller: 'RegisterCtrl'
+      })      
       .when('/', {
         templateUrl: 'app/components/main/mainView.html',
         controller: 'MainCtrl',
