@@ -27,11 +27,11 @@ angular.module('app').factory('registerService', function ($rootScope, $q, $time
     };
         
         return deferred.promise;
-    }
+    });
 
-    return {
+    /*return {
         create: function(data){
             return _create(data);
         }
     }
-});
+});*/
