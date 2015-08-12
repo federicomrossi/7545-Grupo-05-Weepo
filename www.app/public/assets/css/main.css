@@ -310,3 +310,8 @@
   opacity: 1;
   display: block !important;
 }
+
+.wp-checkRegister{
+  margin-left: 35px !important;
+  margin-top: 0px !important;
+}
