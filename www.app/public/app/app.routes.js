@@ -56,6 +56,13 @@ angular.module('app')
           isLoggedin: checkLoggedin
         }
       })
+      .when('/assistence', {
+        templateUrl: 'app/components/marketingAssisstants/marketingAssisstantsView.html',
+        controller: 'MarketingAssisstantsCtrl',
+        resolve: {
+          isLoggedin: checkLoggedin
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });
