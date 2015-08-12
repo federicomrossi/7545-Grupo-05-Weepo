@@ -55,11 +55,11 @@
   text-align: center;
 }
 
-  .wp-description-card .wp-img-container img {
-    max-width: 100%;
-    max-height: 150px;
-    margin: 0 auto;
-  }
+.wp-description-card .wp-img-container img {
+  max-width: 100%;
+  max-height: 150px;
+  margin: 0 auto;
+}
 
 .wp-description-card p {
   margin-top: 10px;
@@ -314,4 +314,21 @@
 .wp-checkRegister{
   margin-left: 35px !important;
   margin-top: 0px !important;
+}
+
+
+.wp-description-card-thin {
+  width: 250px !important; 
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.glyphicon.glyphicon-star {
+    font-size: 20px;
+}
+
+.glyphicon.glyphicon-star-empty {
+    font-size: 20px;
 }
