@@ -35,7 +35,7 @@ angular.module('app')
         ]},
         { 'name': 'Administrar eventos', 'link': '#/events', 'icon': 'fa-calendar-check-o', 'subitems': [
         ]},
-        { 'name': 'Asistente de Marketing', 'link': '#/assistence', 'icon': 'fa-user', 'subitems': [
+        { 'name': 'Asesor de Marketing', 'link': '#/assistence', 'icon': 'fa-user', 'subitems': [
         ]},
         { 'name': 'Administrar Plan', 'link': '#/plans', 'icon': 'fa-credit-card', 'subitems': [
         ]},
