@@ -260,434 +260,570 @@ Todos los archivos y códigos fuente aquí mencionados, así como también el pr
 
 
 
-%
-% CAPITULO 1
-%
-\chapter{Enunciado}
 
 
 
-% CAPITULO 1
-% Implementación pedida
-\section{Implementación pedida}
 
-En esta segunda iteración se pide extender el modelo de dominio realizado en la \textit{primera iteración}\footnote{Se hará referencia al informe corresponiente a la primera iteración, el cual puede descargarse desde \url{http://goo.gl/zTCBkk}}, de manera de soportar los requerimientos que se detallarán en los apartados siguientes.
-\bigskip
-
-
-
-% CAPITULO 1
-% El laberinto y sus bolitas
-\subsection{El laberinto y sus bolitas}
-
-El laberinto define: la distribución de lugares válidos de transito en
-donde en cada una de estas posiciones hay bolitas (o bolones) y los lugares posibles por donde se desplazan los fantasmas y el pacman.
-\par
-Tiene definido también la posición de inicio del pacman y el lugar de donde salen los fantasmas (al comienzo y cuando pasan de estado muerto a estado cazador).
-\par
-Las bolitas y los bolones son comidos únicamente por el pacman.
-\par
-Cuando un bolón es comido, todos los fantasmas que están en estado cazador son convertidos a presa (por un intervalo x de tiempo) y todos los que son presa permanecen presa (por el mismo intervalo x de tiempo).
-\par
-Se pide modelar el laberinto del pacman (con sus N bolones y sus portales)
-\par
-El laberinto debe instanciarse a partir de un archivo, donde se indican:
-
-\begin{itemize}
-\renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-
-	\item Las conexiones entre los eslabones del laberinto.
-
-	\item Qué eslabones contienen bolitas o bolones.
-
-\end{itemize}	
-\smallskip
-
-El formato del archivo de definición de laberintos esta definido, descargar el campus.
-\par
-No se pide modelar en esta iteración el manejo de partidas con niveles, ni tampoco de puntajes por bolita comida.
-\par
-Dado que no hay interfaz gráfica en esta iteración, se desea tener un  mecanismo de notificación ante cada iteración, intervalo o tick del estado del juego. Dicha notificación debe ser serializada en archivos xml con el estado de cada iteración del juego.
-\par
-Para ello, ante cada iteración o tick del juego, se solicita leer de un archivo el movimiento elegido para el pacman, realizar los movimientos correspondientes y luego serializar a un xml el estado del juego para ese tick. El formato solicitado para la serialización tanto para el movimiento elegido del pacman, como al del estado del juego, ya estan definidos y se descargaran del campus.
-\bigskip
-
-
-% CAPITULO 1
-% El pacman
-\subsection{El Pacman}
-
-El mismo recibirá las órdenes del usuario para moverse en las cuatro direcciones. El pacman siempre tiene una velocidad de 2 x <Velocidad del fantasma en estado normal>. (Los fantasmas tienen la velocidad minima 1 en estado normal, 1,5 en estado molesto y 2 en estado furioso).
-\par
-Cuando el pacman come un fantasma cazador (o es cazado por un fantasma) muere.
-\bigskip
-
-
-% CAPITULO 1
-% Comportamiento autómata de los fantasmas
-\subsection{Comportamiento autómata de los fantasmas}
-
-Los fantasmas en estado cazador pueden desplazarse al menos en alguno de los siguientes cuatro criterios de inteligencia:
-
-\begin{itemize}
-\renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-
-	\item \textit{Zonzo}: Se mueve aleatoriamente, solamente se lanza a comer al pacman si este se encuentra a N1 (a cuatro casilleros seguidos por ejemplo) lugares de distancia, si este se escapa a mas de N1 lugares continúa moviéndose aleatoriamente;
-
-	\item \textit{Perezoso}: Se mueve aleatoriamente, solamente se lanza a comer al pacman si este se encuentra a N2 (ocho por ej) lugares de distancia;
-
-	\item \textit{Buscador}: Se mueve aleatoriamente, si el pacman se encuentra a N3 lugares de distancia lo persigue. Si el pacman se escapa a más de N3 (diez por ej) lugares de distancia el fantasma buscador va hacia la última posición donde lo vio (no se mueve de manera aleatoria) y si en el camino lo ve, se dirige hacia esa posición;
-
-	\item \textit{Buscador temperamental}: Es igual al buscador anterior, pero si el fantasma incrementa su nivel de ira incrementa en X la visión (inicialmente tiene una visión de N4 lugares(12). Si se reinicia el nivel de ira, entonces también se reinicia la visión).
-
-\end{itemize}	
-\smallskip
-
-El movimiento aleatorio mencionado anteriormente tiene que cumplir con los siguientes requerimientos:
-
-\begin{itemize}
-\renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-
-	\item Una vez que entra a un canal del laberinto, sigue hasta llegar a un cruce o bifurcación, recién ahí vuelve a decidir hacia donde ir. Y no es opción regresar por donde vino, a menos que sea un canal sin salida;
-
-	\item A la llegada de un cruce si no sabe a donde ir, dado su visión, entonces define aleatoriamente que camino tomar;
-
-	\item Siempre se mueven, una vez entrado a un canal sigue hasta salir del mismo, al llegar a un cruce decide a donde ir, es decir nunca están quietos;
-
-\end{itemize}	
-\smallskip
-
-El fantasma en estado presa debe alejarse del pacman, es decir que se debe moverse según se describió pero alejándose en los casos que antes se acercaba al pacman.
-\bigskip
-
-
-
-% CAPITULO 1
-% Test unitarios
-\subsection{Test unitarios}
-
-Se piden un set de test unitarios sobre el modelo de dominio descrito en el apartado 1.1.1
-\par
-El set de test unitarios que se desarrolle debe representar un código valioso, debe motivar al equipo de trabajo a mantenerlo en el tiempo por la utilidad que brinda. Debe seguir las buenas prácticas de implementación de test unitarios.
-\par
-Se debe contemplar un conjunto amplio y abarcativo de casos de prueba sobre el modelo de dominio.
-\bigskip
-
-
-% CAPITULO 1
-% Aclaraciones sobre la implementación
-\section{Aclaraciones sobre la implementación}
-
-Quedan fuera de la presente iteración los siguientes requerimientos:
-
-\begin{itemize}
-\renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
-\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-
-	\item Interfaz gráfica del pacman.
-
-	\item Sistema de partidas: Jugadores y turnos, vidas y puntajes, nuevos laberintos. (El juego arranca en estado inicializado según el archivo que lo describe, y termina al morir el pacman o al comer todas las bolitas).
-
-	\item Lógica de cómo un fantasma muerto, regresa al inicio (como se desplazaría de muerto a su lugar de inicio). Directamente desaparece y aparece cuando revive del punto de inicio.
-
-	\item Otras estrategias de los fantasmas cazadores de cómo atacar al pacman (si eligen el camino mas corto o más largo, si lo encierran en grupo, etc).
-
-	\item En caso de tomar una decisión de implementación que esté fuera del alcance descripto, esta no debe contradecir ningún requerimiento pedido y se debe enunciar en el informe la hipótesis que la justifique, las mismas deben validarse con el ayudante.
-
-\end{itemize}	
-\bigskip
 
 
 
 
 %
-% CAPITULO 2
+% CAPITULO X
 %
-\chapter{Diseño del dominio}
+\chapter{Tecnologías y metodologías}
 
-De aquí en adelante iniciaremos la búsqueda de una solución en la que se tendrá como objetivo aplicar criterios que nos permitan llegar a buen diseño, es decir, obtener una estructura robusta que carezca de rigidez, fragilidad e inmobilidad. 
-\par
-Con el fin de conducir el diseño a una buena representación del dominio manteniendo la meta propuesta es que se aplicarán los principios SOLID. En los próximos apartados iremos profundizando sobre la extensión del modelo exponiendo además los principios SOLID que habremos de aplicar.
-\bigskip\bigskip
+
+% CAPITULO X
+\section{Herramientas colaborativas}
+
+	Con el fin de poder llevar a cabo el desarrollo en grupo mediante el soporte necesrio para elaborar el proyecto en forma conjunta y compartida se han utilizado herramientas colaborativas. Estas permiten el intercambio de información, su gestión y control. De esta manera, se logra utilizar el conocimiento táctico y explicito de todo el equipo, generando la posibilidad de gestionar el conocimiento y la participación de cada integrante.
+	\par
+	Las herramientas elegidas para la organización, comunicación y desarrollo del proyecto han sido:
+
+	\begin{itemize}
+	\renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
+	\itemsep=7pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+
+		\item \textit{Google Hangouts}\footnote{Mas info sobre Google Hangouts en \url{http://www.google.com/+/learnmore/hangouts/?hl=es-419}}: es una aplicación de mensajería instantánea que permite mantener conversaciones entre dos o más usuarios, como así también videollamadas con hasta 15 personas en web. 
+		\par La gran ventaja de este servicio es que todas las conversaciones realizadas se archivan en la nube, permitiéndonos así tener un registro de las temáticas discutidas, y en caso de ser necesario, poder acudir a ellas para tomar nota de ideas o problemáticas surgidas en medio de las charlas. Otra ventaja por la cual se ha optado por este servicio es la posibilidad de compartir a lo largo de la videoconferencia, archivos (imágenes, PDFs, entre otros) potenciando de esta manera el contenido e intercambio en las reuniones.
+
+		\item \textit{Trello}\footnote{Mas info sobre Trello en \url{http://www.trello.com}}: es un gestor de tareas que permite el trabajo en forma colaborativa mediante tableros (boards) dispuestos en columnas (llamadas listas) que representan los distintos estados que pueden tomar las tareas. Se basa en el método Kanban para gestión de proyectos, con tarjetas que viajan por diferentes listas en función de su estado. Así, se puede tener una lista de cosas por hacer (o pendientes), que se están haciendo (están en proceso) o tareas ya terminadas. 
+		\par La gran ventaja de este servicio es la de poder visualizar en qué está trabajando cada integrande del proyecto, quién está realizando cada tarea, en que parte del proceso se encuentra cada integrante y globalmente el proyecto. Además permite realizar comentarios sobre cada tarea, manteniendo organizadas las críticas y/o aportes sobre cada una de ellas, como así también, subir archivos asociados a estas.
+
+		\item \textit{GIT}: es un software de control de versiones desarrollado para lograr la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando éstas tienen un gran número de archivos de código fuente. GIT permite que todo el equipo de Weepo trabaje en forma conjunta y paralela sobre los archivos.
+		\par Se ha utilizado como plataforma de desarrollo colaborativo basado en GIT al servicio \textit{GitHub}.
+
+	\end{itemize}	
+\bigskip
+
+
+% CAPITULO X
+\section{Stack de desarrollo}
+
+	Se conoce como stack de desarrollo al conjunto de tecnologías que componen la estructura cliente-servidor en toda su extensión. Esta estructura se encuentra dividida en dos partes bien definidas: el lado \textit{Cliente} (o frontend) y el lado \textit{Servidor} (o backend). En la \textit{Imagen X.1} se muestra un avance de todo el conjunto unido y la interconexión que los relaciona. En esta, el backend se encuentra dividido en el servidor web y el servidor de datos, pero para un mejor entendimiento en la explicación, las consideraremos una única unidad.
+	\par
+	En los siguientes apartados se tratarán dichas divisiones y las tecnologías que las componen.
+	\bigskip\bigskip
 
 % Imagen 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/generalDiagram01.png}
+	\includegraphics[width=0.9\textwidth]{images/01-stack.png}
 	\medskip
-	\caption{Diagrama de clases con enfoque sobre \\ las celdas del laberinto.}
+	\caption{Diagrama representativo del stack y las \\ tecnologías que la componen.}
 	\medskip
 \end{figure}
 \bigskip
 
 
-% CAPITULO 2
-% Celdas
-\section{Celdas}
+% CAPITULO X
+\subsection{Frontend}
 
-Esta entidad surge de la necesidad de expresar en nuestro modelo un concepto de posición dentro del laberinto del pacman. Esta noción comienza obligatoriamente por querer darle valor y existencia a esa posición, y se luce como una entidad abstracta dada su generalidad.
-\par
-La necesidad real fue inicialmente la idea de baldosa, que representa el camino por el cual puede circular tanto el pacman como los fantasmas. De este se desprende otra idea, que es la de querer representar de alguna manera por donde no pueden circular estos objetos que se desplazan. Pero como hablamos, se tratan de elementos dentro del laberinto demasiado concretos y en cierta forma son bastante semejantes, como conclusión al observar esto se decidio generalizarlos de manera que se obtuvo el concepto de celda. El diagrama de clases que expresa esta última idea puede observarse en la \textit{Imagen 2.1}.
+	El Frontend es la división representada por el cliente, el cual, en nuestro caso está protagonizado por el navegador utilizado por este. Para esta parte se utilizarán las siguientes tecnologías:
+
+	\begin{itemize}
+	\renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
+	\itemsep=7pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+
+		\item \textit{HTML5}: Es un lenguaje de marcado para la elaboración de sitios web. Es un estandar que sirve de referencia para construir sitios webs mediante una estructura básica que define la semántica de los datos que lo componen. Dichos datos pueden ser texto, imágenes, videos, entre otros.
+		
+		\item \textit{CSS3}: Las hojas de estilo nos permiten definir de manera eficiente la representación de nuestras páginas en cuanto al diseño y visualización de estas. Permiten definir estructuras guiadas por el futuro atractivo proyectado para nuestras webs, aplicar colores, animaciones, formas, distribuciones, entre otras cosas.
+
+		\item \textit{JS}: es un lenguaje de programación que permite a los desarrolladores crear acciones y capturar eventos iniciados por los usuarios en sus sitios webs. Es decir, JavaScript es un lenguaje utilizado para crear pequeños programas que luego son insertados en una página web y en programas más grandes, orientados a objetos mucho más complejos. Con JS podemos crear diferentes efectos e interactuar de manera dinámica con los usuarios.
+		
+		\item \textit{AngularJS}\footnote{\url{http://www..com/}}: .
+		
+		\item \textit{YEOMAN}\footnote{\url{http://www..com/}}: .
+
+		\item \textit{Grunt}\footnote{\url{http://www..com/}}: .
+
+		\item \textit{Bower}\footnote{\url{http://www..com/}}: .
+
+	\end{itemize}
 \bigskip
 
 
-% CAPITULO 2
-% Objetos de celda
-\subsection{Objetos de celda}
+% CAPITULO X
+\section{Backend}
 
-Teniendo el concepto de celda y agregando la clara noción de que cada celda contendría objetos en concepción de ``distintos objetos se encuentran en determinada celda'' incursionamos en un gran debate que radicaba en comprender qué eran esos objetos que contenía mas allá de saber cuales eran (pacman, fantasma, bolita, bolon).
-\par
-Para esto se comenzó pensando en que deberían tener en común estos elementos, y particularmente detectamos la necesidad de que sean objetos posicionables lo cual define que el objeto sabe colocarse en una celda. Por otro lado se detectó que tiene sentido que estos objetos colisionen entre sí. Y por ultimo, como es el corazón del juego, es indispensable que todos los objetos sean comibles ya que si no fuera así no estaríamos hablando del pacman.
-\par
-De esta manera surgió la entidad \textit{CellObject} para identificar cualquier elemento contenido en una celda, la cual es una entidad abstracta que representa cualquier tipo de objeto posible en el mismo permitiendo gran desacoplamiento y extensibilidad. En la \textit{Imagen 2.2} se puede observar el diagrama de clases de este diseño planteado.
-\bigskip\medskip
-
-% Imagen 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.90\textwidth]{images/generalDiagram02.png}
-	\medskip
-	\caption{Diagrama de clases con enfoque sobre \\ los objetos de las celdas del laberinto.}
-	\medskip
-\end{figure}
+	[ Colocar texto aquí ]
 \bigskip
 
 
-% CAPITULO 2
-% Notificaciones de objetos comibles
-\section{Notificaciones de objetos comibles}
 
-La idea de comible ya había surgido anteriormente en la primer iteración del proyecto, pero no se había profundizado en gran medida. En esta nueva etapa se logró captar su esencia semántica y simplificar su implementación dejando en claro que ``\textit{cuando un objeto, tanto pacman, fantasma, bolita o bolón, es comido simplemente este muere pero no necesariamente sabe que pasa cuando él muere}''.
-\par
-La observación anterior nos permitió pensar como uno de esos objetos y así llegar a una conclusión. En la mayoria de los casos un objeto no necesitaría saber que pasa luego de que ``muere'' pero por el contrario es muy problable que alguien pueda estar interesado en ello, de manera que incorporamos la idea de observador de objetos comibles.
-\par
-Los observadores de objetos comibles básicamente serían objetos que estarían interesados en saber cuándo un objeto en particular fue comido y así poder tomar alguna decisión o interacción necesaria. En la \textit{Imagen 2.3} puede visualizarse el diagrama de clases que representa el concepto recién explicado.
-\bigskip\bigskip
+% CAPITULO X
+\section{Integración con redes sociales}
 
-% Imagen 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.80\textwidth]{images/generalDiagram03.png}
-	\medskip
-	\caption{Diagrama de clases con enfoque sobre \\ la clase observadora de comibles.}
-	\medskip
-\end{figure}
+	[ Colocar texto aquí ]
 \bigskip
 
 
-% CAPITULO 2
-% Baldozas de inicio
-\subsection{Baldozas de inicio}
+% CAPITULO X
+\section{Modelo de datos}
 
-Para el inicio de los fantasmas como así también del pacman, se le indica al laberinto dichas celdas a las cuales se les agregan estos objetos tal como corresponda.
-\par
-De lo anterior, dado el alcance de la iteración, cuando un fantasma muere debe volver a su posición de inicio. Para resolver esta cuestión se optó por implementar un tipo de baldosa cuya función es ser la posición de reinicio de cualquier objeto comido que se encuentre observando. Esto se implementó fácilmente utilizando la interfaz \textit{EatableObserver} sobre cada uno de los fantasmas, y de esta manera cada vez que los fantasmas son comidos por el pacman estos automaticamente se mueven a su posición de reinicio.
+	[ Colocar texto aquí ]
 \bigskip
 
 
-% CAPITULO 2
-% Muerte de los fantasmas
-\subsection{Muerte de los fantasmas}
+% CAPITULO X
+\section{Puesta en producción}
 
-Cuando el fantasma se encuentra en estado presa puede llegar a ser comido por el pacman. Si eso sucediera, sería necesario cambiar su estado y reubicarlo en la celda de inicio que le corresponde. Dado que que dicha celda solo es conocida por el laberinto, se presenta la necesidad de comunicar el evento ocurrido. 
-\par
-Por ello se utilizó una interfaz como \textit{EatableObserver} que pueda ser implementada por aquella clase que sepa como reubicar al fantasma. Así, cada \textit{CellObject} puede tener una serie de observadores, cuyo método correspondiente es invocado cuando el antedicho \textit{CellObject} es comido.
-\par
-En este caso, la clase que implementa \textit{EatableObserver} para el fantasma es \textit{RestartTile}. De este modo, cuando el fantasma es comido, se le avisa al mismo para que cambie su estado a muerto, pero también a la celda de reinicio, que al tener un comportamiento especial, puede reubicar al \textit{CellObject} en sí misma.
+	[ Colocar texto aquí ]
 \bigskip
 
-
-% CAPITULO 2
-% Muerte del pacman
-\subsection{Muerte del pacman}
-
-Al igual que para los fantasmas, también debe existir un método para comunicar la muerte del pacman. Al ser este también un \textit{CellObject}, tiene una lista de observadores a los cuales se avisa en caso de suceder este evento. Los observadores pueden ser, nuevamente, de cualquier clase que implemente \textit{EatableObserver}. 
-\par
-En este caso es el laberinto mismo quien controlará este suceso. De modo que al comer al pacman este avisa a su observador, el laberinto, el cual a su vez realiza las acciones correspondientes, ya sea terminar el juego, descontar una vida o reubicar al pacman.
-\bigskip
-
-
-% CAPITULO 2
-% Bolitas y Bolones comidos
-\subsection{Bolitas y bolones comidos}
-
-La solución propuesta para el manejo de las bolitas y los bolones se centró en dos aspectos o cuestiones: \textit{¿Quien se encarga de sacarlo de su celda? ¿Quien se encarga de efectuar el alcance de que haya sido comido (puntaje o convertir a los fantasmas)?}
-\par
-Luego de debatir la responsabilidad de estos aspectos consideramos indicado dejar que la misma bolita o el bolón se encargue de quitarse a si mismo de su celda luego de ser comido. Pero no fue así para su accionar luego de ser comido, para este caso nos pareció prudente que el laberinto se encargue de observar cuando alguno de estos objetos es comido y asi poder actuar correctamente.
-\bigskip
-
-
-% CAPITULO 2
-% Comportamiento de los fantasmas
-\section{Comportamiento de los fantasmas}
-
-Los fantasmas son entidades que comparten cualidades y comportamientos comunes, más allá de las diferencias que se hallan entre unos y otros. Poseen una presa, un estado, sea este cazador, presa o muerto, y un rango de visión dentro del cual pueden ver a la presa. Todos estos deben ser identificados como atributos o propiedades de dicha entidad. Por otro lado, tienen comportamientos compartidos, sean estos la posibilidad de cambiar de estado, de moverse, perseguir a la presa o huir de ella, comerla o ser comidos.
-\par
-Dado que, sin importar cual sea su inteligencia, todos son fantasmas, la mejor forma de representar los distintos tipos de fantasmas es mediante un mecanismo de herencia. De este modo, las diferencias que hay entre ellos, como el rango de visión, pueden ser modificadas haciendo solo leves ajustes.
-\par
-Se plantean cuatro tipos de inteligencia, sin embargo la cuarta, el buscador temperamental es, básicamente, un fantasma buscador. Por lo tanto, nuevamente se plantea una relación de herencia entre ellos. Entonces, la estructura de clases de los fantasmas quedaría como en la \textit{Imagen 2.1}.
-\bigskip
-
-
-% Imagen 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.86\textwidth]{images/ghostDiagram.png}
-	\caption{Diagrama de clases con enfoque sobre \\ los comportamientos de los fantasmas.}
-	\medskip
-\end{figure}
-\bigskip
-
-
-Los fantasmas tienen como comportamiento común el poder moverse de forma relativa a su presa o aleatoria, dependiendo de si esta se encuentra dentro de su rango de visión o no. Si se encuentran en estado cazador procuran acercarse a su presa y si están siendo perseguidos, se alejan de ella. Por lo que este comportamiento es genérico para todos sus tipos. Solo el buscador puede moverse con otro criterio, de modo que él mismo deberá redefinir su movimiento. Sucede algo similar con el aumento en la vision del buscador temperamental, quien deberá corroborar a medida que pase el tiempo si ha variado su agresividad. De este modo, lo que debería redefinir cada tipo de fantasma sería, principalmente, su rango de visión.
 
 
 
 %
-% CAPITULO 3
+% CAPITULO Y
 %
-\chapter{Control y serialización}
-
-Para la presente iteración, como ya se ha remarcado en el \textit{Capítulo 1}, ha quedado fuera del alcance todo aquello referente al sistema de partidas, es decir, los jugadores, turnos, vidas y puntajes, como así también los distintos laberintos que podrán ser parte del juego.
-\par
-De esta manera, tanto la generación del laberinto y su estructura, el control del pacman y la lectura del estado del juego en distintos periodos del mismo se realizarán a través de una serialización en formato XML. Sin embargo, el objetivo fue no depender de este tipo de serialización, sino que el modelo nos proveyera la posibilidad de manejar estas acciones de forma generalizada y adaptable. En los apartados que siguen haremos mención de esto último de manera mas específica y ejemplificada.
-\par
-Para la versión a la que nos referimos en el presente informe todos los archivos XML serán leídos o generados de forma relativa a una ruta del sistema de archivos del sistema operativo en el que se esté ejecutando el juego. Para esto, al correr la aplicación, el usuario deberá especificar por parámetro la ruta en donde desea que dichos archivos a leer o generar deben ser almacenados.
-\medskip
+\chapter{Demo del servicio}
 
 
-% CAPITULO 3
-% Instanciación del laberinto
-\section{Instanciación del laberinto}
+% CAPITULO Y
+\section{Alcance}
 
-Para la generación del único laberinto disponible en el juego actualmente, se leerá el archivo \textit{labyrinthConfig.xml} ubicado en la raíz de la ruta especificada al correr el juego. Este archivo es procesado por un generador de laberintos representado por la clase \textit{LabyrinthGenerator}, la cual se encarga de estructurar las celdas y sus datos de acuerdo a lo que se indica en el archivo mencionado. Al mismo tiempo que se crea cada celda, se le insertan los objetos que esta pueda contener (bolitas o bolones), como así también se especifica si dicha celda será el inicio de partida de los fantasmas o del pacman.
+	[ Colocar texto aquí ]
 \bigskip
 
 
-% CAPITULO 3
-% Control del Pacman
-\section{Control del Pacman}
+% CAPITULO Y
+\section{Capturas de pantalla}
 
-Como ya es sabido, el usuario deberá poder interactuar en el juego realizando los movimientos del pacman. Para simular dicha interacción, contendremos datos en formato XML en un archivo, los cuales especificarán qué movimientos debe realizar el pacman en cada tick del juego.
-\par
-La clave de este problema es encontrar la forma de abstraer la fuente de los movimientos del modelo del pacman. En nuestro caso hemos llegado a una solución la cual se muestra en la \textit{Image 3.1}.
-\bigskip
-
-% Imagen 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.3\textwidth]{images/pacmanControllerDiagram.png}
-	\caption{Diagrama de clases con enfoque sobre \\ el controlador del pacman.}
-	\medskip
-\end{figure}
-\bigskip
-
-Como se puede notar, hemos inventado un tipo de entidad denominado \textit{PacmanController}, modelizado como una clase abstracta que mantiene conocmiento de la existencia de un pacman para controlar. Esta clase es la que nos permite justamente abstraernos de la fuente de los movimientos, dándonos la posibilidad de leer estos desde un archivo (como es en nuestro caso al tomar las acciones de un archivo XML), tomar datos provenientes de una conexión de red a través de un socket, leer eventos desde el teclado, etc.
-\par
-Mas específicamente, se debe definir en el controlador que se implemente un método declarado como \textit{loadStatus()}, en donde se define desde donde provienen los movimientos, y cómo son comunicados estos al pacman. Cada vez que se invoque a dicho método, se realizará una nueva lectura de la fuente proveedora de las acciones.
+	[ Colocar texto aquí ]
 \bigskip
 
 
-% CAPITULO 3
-% Estado del juego
-\section{Estado del juego}
 
-Además de poder sensar los movimientos del pacman, debemos tener un mecanismo que nos permita tomar conocimiento del estado del laberinto y todo lo que en el vive, a fin de poder manipular dicha información. Estos datos pueden ser requeridos para, por ejemplo, implementar la visualización gráfica y animada del juego, o la transmisión via red de los datos para múltiples y variados propósitos.
-\par
-De esta manera, y utilizando una lógica meramente parecida a la planteada en el apartado anterior, hemos inventado un tipo de entidad \textit{LabyrinthView} modelizada como una clase abstracta. Esta tiene conocmiento del laberinto en el cual se está desarrollando el juego. Además declara un método \textit{refreshStatus()} el cual debe ser implementado por aquellas clases que se encargarán específicamente de leer la información para su utilización. El diagrama de clases de la estructura explicada se muestra en la \textit{Imagen 3.2}.
-\par
-En nuestro caso, sencillamente vamos a solicitarle al laberinto la información del estado del juego en cada tick acontecido para luego almacenarlo en un par de archivos con formato XML. Por un lado se persistirán los datos del laberinto en dicho momento, lo cual consta del almacenamiento de las distintas celdas que lo conforman, los objetos que existen en cada una de estas, etc. 
-\bigskip
-
-
-% Imagen 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.3\textwidth]{images/labyrinthViewDiagram.png}
-	\caption{Diagrama de clases con enfoque sobre \\ la vista del laberinto.}
-	\medskip
-\end{figure}
-\bigskip
-
-
-Para evitar sobreescribir un mismo archivo, lo que significaría perder los datos de los ticks previos al último, se ha generado una secuencia de archivos XML los cuales son creados con el nombre \textit{LaberintoTick} seguido de un número que comienza a partir del 1 y que indica la correlatividad entre archivos.
-Además de la secuencia de estados del laberinto, se ha creado una secuencia de archivos XML en el que se indica el estado general del juego. Es decir, se persiste la posición del pacman en ese tick, el puntaje obtenido hasta el momento y el sentido de movimiento. Sumado a esto, se almacena el estado de cada fantasma, lo que implica el estado (e.g.: cazador), posición (fila y columna), identificador, personalidad y sentido de movimiento actual.
+% %
+% % CAPITULO 1
+% %
+% \chapter{Enunciado}
 
 
 
-%
-% CAPITULO 4
-%
-\chapter{Pruebas}
+% % CAPITULO 1
+% % Implementación pedida
+% \section{Implementación pedida}
+
+% En esta segunda iteración se pide extender el modelo de dominio realizado en la \textit{primera iteración}\footnote{Se hará referencia al informe corresponiente a la primera iteración, el cual puede descargarse desde \url{http://www.google.com/+/learnmore/hangouts/?hl=es-419}}, de manera de soportar los requerimientos que se detallarán en los apartados siguientes.
+% \bigskip
 
 
-% CAPITULO 4
-% Celdas y notificaciones
-\section{Celdas y notificaciones}
 
-Luego de haber diseñado el modelo para las celdas y elegido el modo que se notifican los cambios, se optó por realidad TDD sobre estos aspectos ya que involucraban varias reglas de negocio. Estas reglas fueron surgiendo a lo largo del diseño, por lo que se decidió plasmarlas en  un primer set basico de pruebas sin tener en cuenta grandes razgos y deciciones de implementación permitiendonos contemplar los limites que este alcanzaria.
-\par
-Para llevar a cabo la construcción de estas pruebas se vio necesario crear implementaciones concretas de algunas entidades abstractas para poder utilizar el comportamiento heredado e implementado en la jerarquia abstracta, como son el caso de Cell, CellObject y EatableObserver.
-\par
-En el transcurso de su implementación surgieron nuevos casos que habían sido pasados por alto debido a la profundidad de analisis que estos implicaban por lo cual se fueron agregando nuevos pero siempre respetando y validando los anteriores. Un claro ejemplo de estos casos que surgieron fue el caso de el set de celdas contiguas mostrado en el \refcode{CellTest}.
+% % CAPITULO 1
+% % El laberinto y sus bolitas
+% \subsection{El laberinto y sus bolitas}
 
+% El laberinto define: la distribución de lugares válidos de transito en
+% donde en cada una de estas posiciones hay bolitas (o bolones) y los lugares posibles por donde se desplazan los fantasmas y el pacman.
+% \par
+% Tiene definido también la posición de inicio del pacman y el lugar de donde salen los fantasmas (al comienzo y cuando pasan de estado muerto a estado cazador).
+% \par
+% Las bolitas y los bolones son comidos únicamente por el pacman.
+% \par
+% Cuando un bolón es comido, todos los fantasmas que están en estado cazador son convertidos a presa (por un intervalo x de tiempo) y todos los que son presa permanecen presa (por el mismo intervalo x de tiempo).
+% \par
+% Se pide modelar el laberinto del pacman (con sus N bolones y sus portales)
+% \par
+% El laberinto debe instanciarse a partir de un archivo, donde se indican:
 
-% Código
-\lstset{ language = Java } % Cambiamos el lenguaje para que parsee en Java
-\lstinputlisting[label=CellTest,caption=``Prueba de celdas'']{codes/CellTest.java} 
-\bigskip\bigskip
+% \begin{itemize}
+% \renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
+% \itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
 
+% 	\item Las conexiones entre los eslabones del laberinto.
 
-Como podemos observar, se encontró que en la configuración de celdas contiguas debe involucrar que los datos de ambas celdas no pierdan consistencia.
-\bigskip\bigskip
+% 	\item Qué eslabones contienen bolitas o bolones.
 
+% \end{itemize}	
+% \smallskip
 
-% CAPITULO 4
-% Comportamiento de los fantasmas
-\section{Comportamiento de los fantasmas}
-
-Para probar el comportamiento de los fantasmas es necesario crear un set de celdas y una presa. Con un fantasma en estado cazador y teniendo a la presa dentro de su rango de visión, se debe probar que cada vez que se mueva lo haga de a una celda, que esta sea contigua a aquella en la que estaba previamente y que sea una celda valida, no una pared, y que la distancia con la presa haya disminuido. Lo mismo es válido para el fantasma en estado presa, solo que la distancia debe aumentar en lugar de disminuir. Si la presa no está dentro del rango de visión del fantasma, se debe probar lo mismo, con excepción de la distancia a la presa.
-\par
-En el caso del fantasma buscador, es necesario probar también que cuando la presa salga de la vista el fantasma se dirija a la celda en que lo vio por última vez. Por otro lado, en el buscador temperamental se debe probar si la visión se actualiza al cambiar la agresividad y si al volver del estado muerto al estado cazador, momento en que la agresividad toma su valor original, sucede lo mismo con la visión.
-\bigskip
-
-
-% CAPITULO 4
-% Generación de notificaciones del juego
-\section{Generación de notificaciones del juego}
-
-Para poder corroborar el buen funcionamiento de las notificaciones, primeramente se debió proveer al juego de un laberinto bien definido. Particularmente, se ha armado un laberinto con diez celdas de alto por diez celdas de ancho, como se muestra en la \textit{Imagen 4.1}.
-\bigskip
-
-% Imagen 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.6\textwidth]{images/laberintoDibujo.jpg}
-	\caption{Diagrama visual de celdas del laberinto.}
-	\medskip
-\end{figure}
-\bigskip
+% El formato del archivo de definición de laberintos esta definido, descargar el campus.
+% \par
+% No se pide modelar en esta iteración el manejo de partidas con niveles, ni tampoco de puntajes por bolita comida.
+% \par
+% Dado que no hay interfaz gráfica en esta iteración, se desea tener un  mecanismo de notificación ante cada iteración, intervalo o tick del estado del juego. Dicha notificación debe ser serializada en archivos xml con el estado de cada iteración del juego.
+% \par
+% Para ello, ante cada iteración o tick del juego, se solicita leer de un archivo el movimiento elegido para el pacman, realizar los movimientos correspondientes y luego serializar a un xml el estado del juego para ese tick. El formato solicitado para la serialización tanto para el movimiento elegido del pacman, como al del estado del juego, ya estan definidos y se descargaran del campus.
+% \bigskip
 
 
-Este laberinto se carga desde el archivo con formato XML \textit{LabyrinthConfig.xml}, y cuyo contenido puede verse en el \refcode{LaberintoXmlTest}.
+% % CAPITULO 1
+% % El pacman
+% \subsection{El Pacman}
+
+% El mismo recibirá las órdenes del usuario para moverse en las cuatro direcciones. El pacman siempre tiene una velocidad de 2 x <Velocidad del fantasma en estado normal>. (Los fantasmas tienen la velocidad minima 1 en estado normal, 1,5 en estado molesto y 2 en estado furioso).
+% \par
+% Cuando el pacman come un fantasma cazador (o es cazado por un fantasma) muere.
+% \bigskip
 
 
-% Código
-\lstset{ language = XML } % Cambiamos el lenguaje para que parsee en XML
-\lstinputlisting[label=LaberintoXmlTest,caption=``Prueba de la serialización'']{codes/labyrinthConfig.xml} 
-\bigskip
+% % CAPITULO 1
+% % Comportamiento autómata de los fantasmas
+% \subsection{Comportamiento autómata de los fantasmas}
+
+% Los fantasmas en estado cazador pueden desplazarse al menos en alguno de los siguientes cuatro criterios de inteligencia:
+
+% \begin{itemize}
+% \renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
+% \itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+
+% 	\item \textit{Zonzo}: Se mueve aleatoriamente, solamente se lanza a comer al pacman si este se encuentra a N1 (a cuatro casilleros seguidos por ejemplo) lugares de distancia, si este se escapa a mas de N1 lugares continúa moviéndose aleatoriamente;
+
+% 	\item \textit{Perezoso}: Se mueve aleatoriamente, solamente se lanza a comer al pacman si este se encuentra a N2 (ocho por ej) lugares de distancia;
+
+% 	\item \textit{Buscador}: Se mueve aleatoriamente, si el pacman se encuentra a N3 lugares de distancia lo persigue. Si el pacman se escapa a más de N3 (diez por ej) lugares de distancia el fantasma buscador va hacia la última posición donde lo vio (no se mueve de manera aleatoria) y si en el camino lo ve, se dirige hacia esa posición;
+
+% 	\item \textit{Buscador temperamental}: Es igual al buscador anterior, pero si el fantasma incrementa su nivel de ira incrementa en X la visión (inicialmente tiene una visión de N4 lugares(12). Si se reinicia el nivel de ira, entonces también se reinicia la visión).
+
+% \end{itemize}	
+% \smallskip
+
+% El movimiento aleatorio mencionado anteriormente tiene que cumplir con los siguientes requerimientos:
+
+% \begin{itemize}
+% \renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
+% \itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+
+% 	\item Una vez que entra a un canal del laberinto, sigue hasta llegar a un cruce o bifurcación, recién ahí vuelve a decidir hacia donde ir. Y no es opción regresar por donde vino, a menos que sea un canal sin salida;
+
+% 	\item A la llegada de un cruce si no sabe a donde ir, dado su visión, entonces define aleatoriamente que camino tomar;
+
+% 	\item Siempre se mueven, una vez entrado a un canal sigue hasta salir del mismo, al llegar a un cruce decide a donde ir, es decir nunca están quietos;
+
+% \end{itemize}	
+% \smallskip
+
+% El fantasma en estado presa debe alejarse del pacman, es decir que se debe moverse según se describió pero alejándose en los casos que antes se acercaba al pacman.
+% \bigskip
 
 
-Para poder constatar la correcta generación de las notificaciones (serializadas en archivos XML) de los estados del laberinto y de los personajes a lo largo de los distintos ticks, se ha decidido agregar una pequeña porción de código en la aplicación misma que invoque al controlador del pacman (\refcode{SerializationTest}). Este controlador es el que hemos creado para la presente iteración, el cual lee los movimientos del pacman desde un archivo XML. De esta manera, el juego ejecutará tantos ticks como movimientos distintos se especifiquen en esta fuente de movimientos. Esta implementación se puede ver en entre las líneas 32 y 39.
-\bigskip
+
+% % CAPITULO 1
+% % Test unitarios
+% \subsection{Test unitarios}
+
+% Se piden un set de test unitarios sobre el modelo de dominio descrito en el apartado 1.1.1
+% \par
+% El set de test unitarios que se desarrolle debe representar un código valioso, debe motivar al equipo de trabajo a mantenerlo en el tiempo por la utilidad que brinda. Debe seguir las buenas prácticas de implementación de test unitarios.
+% \par
+% Se debe contemplar un conjunto amplio y abarcativo de casos de prueba sobre el modelo de dominio.
+% \bigskip
 
 
-% Código
-\lstset{ language = Java } % Cambiamos el lenguaje para que parsee en Java
-\lstinputlisting[label=SerializationTest,caption=``Prueba de la serialización'']{codes/SerializationTest.java} 
-\bigskip\bigskip
+% % CAPITULO 1
+% % Aclaraciones sobre la implementación
+% \section{Aclaraciones sobre la implementación}
+
+% Quedan fuera de la presente iteración los siguientes requerimientos:
+
+% \begin{itemize}
+% \renewcommand{\labelitemi}{\scriptsize\tiny$\blacksquare$} 
+% \itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+
+% 	\item Interfaz gráfica del pacman.
+
+% 	\item Sistema de partidas: Jugadores y turnos, vidas y puntajes, nuevos laberintos. (El juego arranca en estado inicializado según el archivo que lo describe, y termina al morir el pacman o al comer todas las bolitas).
+
+% 	\item Lógica de cómo un fantasma muerto, regresa al inicio (como se desplazaría de muerto a su lugar de inicio). Directamente desaparece y aparece cuando revive del punto de inicio.
+
+% 	\item Otras estrategias de los fantasmas cazadores de cómo atacar al pacman (si eligen el camino mas corto o más largo, si lo encierran en grupo, etc).
+
+% 	\item En caso de tomar una decisión de implementación que esté fuera del alcance descripto, esta no debe contradecir ningún requerimiento pedido y se debe enunciar en el informe la hipótesis que la justifique, las mismas deben validarse con el ayudante.
+
+% \end{itemize}	
+% \bigskip
+
+
+
+
+% %
+% % CAPITULO 2
+% %
+% \chapter{Diseño del dominio}
+
+% De aquí en adelante iniciaremos la búsqueda de una solución en la que se tendrá como objetivo aplicar criterios que nos permitan llegar a buen diseño, es decir, obtener una estructura robusta que carezca de rigidez, fragilidad e inmobilidad. 
+% \par
+% Con el fin de conducir el diseño a una buena representación del dominio manteniendo la meta propuesta es que se aplicarán los principios SOLID. En los próximos apartados iremos profundizando sobre la extensión del modelo exponiendo además los principios SOLID que habremos de aplicar.
+% \bigskip\bigskip
+
+% % Imagen 
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.7\textwidth]{images/generalDiagram01.png}
+% 	\medskip
+% 	\caption{Diagrama de clases con enfoque sobre \\ las celdas del laberinto.}
+% 	\medskip
+% \end{figure}
+% \bigskip
+
+
+% % CAPITULO 2
+% % Celdas
+% \section{Celdas}
+
+% Esta entidad surge de la necesidad de expresar en nuestro modelo un concepto de posición dentro del laberinto del pacman. Esta noción comienza obligatoriamente por querer darle valor y existencia a esa posición, y se luce como una entidad abstracta dada su generalidad.
+% \par
+% La necesidad real fue inicialmente la idea de baldosa, que representa el camino por el cual puede circular tanto el pacman como los fantasmas. De este se desprende otra idea, que es la de querer representar de alguna manera por donde no pueden circular estos objetos que se desplazan. Pero como hablamos, se tratan de elementos dentro del laberinto demasiado concretos y en cierta forma son bastante semejantes, como conclusión al observar esto se decidio generalizarlos de manera que se obtuvo el concepto de celda. El diagrama de clases que expresa esta última idea puede observarse en la \textit{Imagen 2.1}.
+% \bigskip
+
+
+% % CAPITULO 2
+% % Objetos de celda
+% \subsection{Objetos de celda}
+
+% Teniendo el concepto de celda y agregando la clara noción de que cada celda contendría objetos en concepción de ``distintos objetos se encuentran en determinada celda'' incursionamos en un gran debate que radicaba en comprender qué eran esos objetos que contenía mas allá de saber cuales eran (pacman, fantasma, bolita, bolon).
+% \par
+% Para esto se comenzó pensando en que deberían tener en común estos elementos, y particularmente detectamos la necesidad de que sean objetos posicionables lo cual define que el objeto sabe colocarse en una celda. Por otro lado se detectó que tiene sentido que estos objetos colisionen entre sí. Y por ultimo, como es el corazón del juego, es indispensable que todos los objetos sean comibles ya que si no fuera así no estaríamos hablando del pacman.
+% \par
+% De esta manera surgió la entidad \textit{CellObject} para identificar cualquier elemento contenido en una celda, la cual es una entidad abstracta que representa cualquier tipo de objeto posible en el mismo permitiendo gran desacoplamiento y extensibilidad. En la \textit{Imagen 2.2} se puede observar el diagrama de clases de este diseño planteado.
+% \bigskip\medskip
+
+% % Imagen 
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.90\textwidth]{images/generalDiagram02.png}
+% 	\medskip
+% 	\caption{Diagrama de clases con enfoque sobre \\ los objetos de las celdas del laberinto.}
+% 	\medskip
+% \end{figure}
+% \bigskip
+
+
+% % CAPITULO 2
+% % Notificaciones de objetos comibles
+% \section{Notificaciones de objetos comibles}
+
+% La idea de comible ya había surgido anteriormente en la primer iteración del proyecto, pero no se había profundizado en gran medida. En esta nueva etapa se logró captar su esencia semántica y simplificar su implementación dejando en claro que ``\textit{cuando un objeto, tanto pacman, fantasma, bolita o bolón, es comido simplemente este muere pero no necesariamente sabe que pasa cuando él muere}''.
+% \par
+% La observación anterior nos permitió pensar como uno de esos objetos y así llegar a una conclusión. En la mayoria de los casos un objeto no necesitaría saber que pasa luego de que ``muere'' pero por el contrario es muy problable que alguien pueda estar interesado en ello, de manera que incorporamos la idea de observador de objetos comibles.
+% \par
+% Los observadores de objetos comibles básicamente serían objetos que estarían interesados en saber cuándo un objeto en particular fue comido y así poder tomar alguna decisión o interacción necesaria. En la \textit{Imagen 2.3} puede visualizarse el diagrama de clases que representa el concepto recién explicado.
+% \bigskip\bigskip
+
+% % Imagen 
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.80\textwidth]{images/generalDiagram03.png}
+% 	\medskip
+% 	\caption{Diagrama de clases con enfoque sobre \\ la clase observadora de comibles.}
+% 	\medskip
+% \end{figure}
+% \bigskip
+
+
+% % CAPITULO 2
+% % Baldozas de inicio
+% \subsection{Baldozas de inicio}
+
+% Para el inicio de los fantasmas como así también del pacman, se le indica al laberinto dichas celdas a las cuales se les agregan estos objetos tal como corresponda.
+% \par
+% De lo anterior, dado el alcance de la iteración, cuando un fantasma muere debe volver a su posición de inicio. Para resolver esta cuestión se optó por implementar un tipo de baldosa cuya función es ser la posición de reinicio de cualquier objeto comido que se encuentre observando. Esto se implementó fácilmente utilizando la interfaz \textit{EatableObserver} sobre cada uno de los fantasmas, y de esta manera cada vez que los fantasmas son comidos por el pacman estos automaticamente se mueven a su posición de reinicio.
+% \bigskip
+
+
+% % CAPITULO 2
+% % Muerte de los fantasmas
+% \subsection{Muerte de los fantasmas}
+
+% Cuando el fantasma se encuentra en estado presa puede llegar a ser comido por el pacman. Si eso sucediera, sería necesario cambiar su estado y reubicarlo en la celda de inicio que le corresponde. Dado que que dicha celda solo es conocida por el laberinto, se presenta la necesidad de comunicar el evento ocurrido. 
+% \par
+% Por ello se utilizó una interfaz como \textit{EatableObserver} que pueda ser implementada por aquella clase que sepa como reubicar al fantasma. Así, cada \textit{CellObject} puede tener una serie de observadores, cuyo método correspondiente es invocado cuando el antedicho \textit{CellObject} es comido.
+% \par
+% En este caso, la clase que implementa \textit{EatableObserver} para el fantasma es \textit{RestartTile}. De este modo, cuando el fantasma es comido, se le avisa al mismo para que cambie su estado a muerto, pero también a la celda de reinicio, que al tener un comportamiento especial, puede reubicar al \textit{CellObject} en sí misma.
+% \bigskip
+
+
+% % CAPITULO 2
+% % Muerte del pacman
+% \subsection{Muerte del pacman}
+
+% Al igual que para los fantasmas, también debe existir un método para comunicar la muerte del pacman. Al ser este también un \textit{CellObject}, tiene una lista de observadores a los cuales se avisa en caso de suceder este evento. Los observadores pueden ser, nuevamente, de cualquier clase que implemente \textit{EatableObserver}. 
+% \par
+% En este caso es el laberinto mismo quien controlará este suceso. De modo que al comer al pacman este avisa a su observador, el laberinto, el cual a su vez realiza las acciones correspondientes, ya sea terminar el juego, descontar una vida o reubicar al pacman.
+% \bigskip
+
+
+% % CAPITULO 2
+% % Bolitas y Bolones comidos
+% \subsection{Bolitas y bolones comidos}
+
+% La solución propuesta para el manejo de las bolitas y los bolones se centró en dos aspectos o cuestiones: \textit{¿Quien se encarga de sacarlo de su celda? ¿Quien se encarga de efectuar el alcance de que haya sido comido (puntaje o convertir a los fantasmas)?}
+% \par
+% Luego de debatir la responsabilidad de estos aspectos consideramos indicado dejar que la misma bolita o el bolón se encargue de quitarse a si mismo de su celda luego de ser comido. Pero no fue así para su accionar luego de ser comido, para este caso nos pareció prudente que el laberinto se encargue de observar cuando alguno de estos objetos es comido y asi poder actuar correctamente.
+% \bigskip
+
+
+% % CAPITULO 2
+% % Comportamiento de los fantasmas
+% \section{Comportamiento de los fantasmas}
+
+% Los fantasmas son entidades que comparten cualidades y comportamientos comunes, más allá de las diferencias que se hallan entre unos y otros. Poseen una presa, un estado, sea este cazador, presa o muerto, y un rango de visión dentro del cual pueden ver a la presa. Todos estos deben ser identificados como atributos o propiedades de dicha entidad. Por otro lado, tienen comportamientos compartidos, sean estos la posibilidad de cambiar de estado, de moverse, perseguir a la presa o huir de ella, comerla o ser comidos.
+% \par
+% Dado que, sin importar cual sea su inteligencia, todos son fantasmas, la mejor forma de representar los distintos tipos de fantasmas es mediante un mecanismo de herencia. De este modo, las diferencias que hay entre ellos, como el rango de visión, pueden ser modificadas haciendo solo leves ajustes.
+% \par
+% Se plantean cuatro tipos de inteligencia, sin embargo la cuarta, el buscador temperamental es, básicamente, un fantasma buscador. Por lo tanto, nuevamente se plantea una relación de herencia entre ellos. Entonces, la estructura de clases de los fantasmas quedaría como en la \textit{Imagen 2.1}.
+% \bigskip
+
+
+% % Imagen 
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.86\textwidth]{images/ghostDiagram.png}
+% 	\caption{Diagrama de clases con enfoque sobre \\ los comportamientos de los fantasmas.}
+% 	\medskip
+% \end{figure}
+% \bigskip
+
+
+% Los fantasmas tienen como comportamiento común el poder moverse de forma relativa a su presa o aleatoria, dependiendo de si esta se encuentra dentro de su rango de visión o no. Si se encuentran en estado cazador procuran acercarse a su presa y si están siendo perseguidos, se alejan de ella. Por lo que este comportamiento es genérico para todos sus tipos. Solo el buscador puede moverse con otro criterio, de modo que él mismo deberá redefinir su movimiento. Sucede algo similar con el aumento en la vision del buscador temperamental, quien deberá corroborar a medida que pase el tiempo si ha variado su agresividad. De este modo, lo que debería redefinir cada tipo de fantasma sería, principalmente, su rango de visión.
+
+
+
+% %
+% % CAPITULO 3
+% %
+% \chapter{Control y serialización}
+
+% Para la presente iteración, como ya se ha remarcado en el \textit{Capítulo 1}, ha quedado fuera del alcance todo aquello referente al sistema de partidas, es decir, los jugadores, turnos, vidas y puntajes, como así también los distintos laberintos que podrán ser parte del juego.
+% \par
+% De esta manera, tanto la generación del laberinto y su estructura, el control del pacman y la lectura del estado del juego en distintos periodos del mismo se realizarán a través de una serialización en formato XML. Sin embargo, el objetivo fue no depender de este tipo de serialización, sino que el modelo nos proveyera la posibilidad de manejar estas acciones de forma generalizada y adaptable. En los apartados que siguen haremos mención de esto último de manera mas específica y ejemplificada.
+% \par
+% Para la versión a la que nos referimos en el presente informe todos los archivos XML serán leídos o generados de forma relativa a una ruta del sistema de archivos del sistema operativo en el que se esté ejecutando el juego. Para esto, al correr la aplicación, el usuario deberá especificar por parámetro la ruta en donde desea que dichos archivos a leer o generar deben ser almacenados.
+% \medskip
+
+
+% % CAPITULO 3
+% % Instanciación del laberinto
+% \section{Instanciación del laberinto}
+
+% Para la generación del único laberinto disponible en el juego actualmente, se leerá el archivo \textit{labyrinthConfig.xml} ubicado en la raíz de la ruta especificada al correr el juego. Este archivo es procesado por un generador de laberintos representado por la clase \textit{LabyrinthGenerator}, la cual se encarga de estructurar las celdas y sus datos de acuerdo a lo que se indica en el archivo mencionado. Al mismo tiempo que se crea cada celda, se le insertan los objetos que esta pueda contener (bolitas o bolones), como así también se especifica si dicha celda será el inicio de partida de los fantasmas o del pacman.
+% \bigskip
+
+
+% % CAPITULO 3
+% % Control del Pacman
+% \section{Control del Pacman}
+
+% Como ya es sabido, el usuario deberá poder interactuar en el juego realizando los movimientos del pacman. Para simular dicha interacción, contendremos datos en formato XML en un archivo, los cuales especificarán qué movimientos debe realizar el pacman en cada tick del juego.
+% \par
+% La clave de este problema es encontrar la forma de abstraer la fuente de los movimientos del modelo del pacman. En nuestro caso hemos llegado a una solución la cual se muestra en la \textit{Image 3.1}.
+% \bigskip
+
+% % Imagen 
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.3\textwidth]{images/pacmanControllerDiagram.png}
+% 	\caption{Diagrama de clases con enfoque sobre \\ el controlador del pacman.}
+% 	\medskip
+% \end{figure}
+% \bigskip
+
+% Como se puede notar, hemos inventado un tipo de entidad denominado \textit{PacmanController}, modelizado como una clase abstracta que mantiene conocmiento de la existencia de un pacman para controlar. Esta clase es la que nos permite justamente abstraernos de la fuente de los movimientos, dándonos la posibilidad de leer estos desde un archivo (como es en nuestro caso al tomar las acciones de un archivo XML), tomar datos provenientes de una conexión de red a través de un socket, leer eventos desde el teclado, etc.
+% \par
+% Mas específicamente, se debe definir en el controlador que se implemente un método declarado como \textit{loadStatus()}, en donde se define desde donde provienen los movimientos, y cómo son comunicados estos al pacman. Cada vez que se invoque a dicho método, se realizará una nueva lectura de la fuente proveedora de las acciones.
+% \bigskip
+
+
+% % CAPITULO 3
+% % Estado del juego
+% \section{Estado del juego}
+
+% Además de poder sensar los movimientos del pacman, debemos tener un mecanismo que nos permita tomar conocimiento del estado del laberinto y todo lo que en el vive, a fin de poder manipular dicha información. Estos datos pueden ser requeridos para, por ejemplo, implementar la visualización gráfica y animada del juego, o la transmisión via red de los datos para múltiples y variados propósitos.
+% \par
+% De esta manera, y utilizando una lógica meramente parecida a la planteada en el apartado anterior, hemos inventado un tipo de entidad \textit{LabyrinthView} modelizada como una clase abstracta. Esta tiene conocmiento del laberinto en el cual se está desarrollando el juego. Además declara un método \textit{refreshStatus()} el cual debe ser implementado por aquellas clases que se encargarán específicamente de leer la información para su utilización. El diagrama de clases de la estructura explicada se muestra en la \textit{Imagen 3.2}.
+% \par
+% En nuestro caso, sencillamente vamos a solicitarle al laberinto la información del estado del juego en cada tick acontecido para luego almacenarlo en un par de archivos con formato XML. Por un lado se persistirán los datos del laberinto en dicho momento, lo cual consta del almacenamiento de las distintas celdas que lo conforman, los objetos que existen en cada una de estas, etc. 
+% \bigskip
+
+
+% % Imagen 
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.3\textwidth]{images/labyrinthViewDiagram.png}
+% 	\caption{Diagrama de clases con enfoque sobre \\ la vista del laberinto.}
+% 	\medskip
+% \end{figure}
+% \bigskip
+
+
+% Para evitar sobreescribir un mismo archivo, lo que significaría perder los datos de los ticks previos al último, se ha generado una secuencia de archivos XML los cuales son creados con el nombre \textit{LaberintoTick} seguido de un número que comienza a partir del 1 y que indica la correlatividad entre archivos.
+% Además de la secuencia de estados del laberinto, se ha creado una secuencia de archivos XML en el que se indica el estado general del juego. Es decir, se persiste la posición del pacman en ese tick, el puntaje obtenido hasta el momento y el sentido de movimiento. Sumado a esto, se almacena el estado de cada fantasma, lo que implica el estado (e.g.: cazador), posición (fila y columna), identificador, personalidad y sentido de movimiento actual.
+
+
+
+% %
+% % CAPITULO 4
+% %
+% \chapter{Pruebas}
+
+
+% % CAPITULO 4
+% % Celdas y notificaciones
+% \section{Celdas y notificaciones}
+
+% Luego de haber diseñado el modelo para las celdas y elegido el modo que se notifican los cambios, se optó por realidad TDD sobre estos aspectos ya que involucraban varias reglas de negocio. Estas reglas fueron surgiendo a lo largo del diseño, por lo que se decidió plasmarlas en  un primer set basico de pruebas sin tener en cuenta grandes razgos y deciciones de implementación permitiendonos contemplar los limites que este alcanzaria.
+% \par
+% Para llevar a cabo la construcción de estas pruebas se vio necesario crear implementaciones concretas de algunas entidades abstractas para poder utilizar el comportamiento heredado e implementado en la jerarquia abstracta, como son el caso de Cell, CellObject y EatableObserver.
+% \par
+% En el transcurso de su implementación surgieron nuevos casos que habían sido pasados por alto debido a la profundidad de analisis que estos implicaban por lo cual se fueron agregando nuevos pero siempre respetando y validando los anteriores. Un claro ejemplo de estos casos que surgieron fue el caso de el set de celdas contiguas mostrado en el \refcode{CellTest}.
+
+
+% % Código
+% \lstset{ language = Java } % Cambiamos el lenguaje para que parsee en Java
+% \lstinputlisting[label=CellTest,caption=``Prueba de celdas'']{codes/CellTest.java} 
+% \bigskip\bigskip
+
+
+% Como podemos observar, se encontró que en la configuración de celdas contiguas debe involucrar que los datos de ambas celdas no pierdan consistencia.
+% \bigskip\bigskip
+
+
+% % CAPITULO 4
+% % Comportamiento de los fantasmas
+% \section{Comportamiento de los fantasmas}
+
+% Para probar el comportamiento de los fantasmas es necesario crear un set de celdas y una presa. Con un fantasma en estado cazador y teniendo a la presa dentro de su rango de visión, se debe probar que cada vez que se mueva lo haga de a una celda, que esta sea contigua a aquella en la que estaba previamente y que sea una celda valida, no una pared, y que la distancia con la presa haya disminuido. Lo mismo es válido para el fantasma en estado presa, solo que la distancia debe aumentar en lugar de disminuir. Si la presa no está dentro del rango de visión del fantasma, se debe probar lo mismo, con excepción de la distancia a la presa.
+% \par
+% En el caso del fantasma buscador, es necesario probar también que cuando la presa salga de la vista el fantasma se dirija a la celda en que lo vio por última vez. Por otro lado, en el buscador temperamental se debe probar si la visión se actualiza al cambiar la agresividad y si al volver del estado muerto al estado cazador, momento en que la agresividad toma su valor original, sucede lo mismo con la visión.
+% \bigskip
+
+
+% % CAPITULO 4
+% % Generación de notificaciones del juego
+% \section{Generación de notificaciones del juego}
+
+% Para poder corroborar el buen funcionamiento de las notificaciones, primeramente se debió proveer al juego de un laberinto bien definido. Particularmente, se ha armado un laberinto con diez celdas de alto por diez celdas de ancho, como se muestra en la \textit{Imagen 4.1}.
+% \bigskip
+
+% % Imagen 
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=0.6\textwidth]{images/laberintoDibujo.jpg}
+% 	\caption{Diagrama visual de celdas del laberinto.}
+% 	\medskip
+% \end{figure}
+% \bigskip
+
+
+% Este laberinto se carga desde el archivo con formato XML \textit{LabyrinthConfig.xml}, y cuyo contenido puede verse en el \refcode{LaberintoXmlTest}.
+
+
+% % Código
+% \lstset{ language = XML } % Cambiamos el lenguaje para que parsee en XML
+% \lstinputlisting[label=LaberintoXmlTest,caption=``Prueba de la serialización'']{codes/labyrinthConfig.xml} 
+% \bigskip
+
+
+% Para poder constatar la correcta generación de las notificaciones (serializadas en archivos XML) de los estados del laberinto y de los personajes a lo largo de los distintos ticks, se ha decidido agregar una pequeña porción de código en la aplicación misma que invoque al controlador del pacman (\refcode{SerializationTest}). Este controlador es el que hemos creado para la presente iteración, el cual lee los movimientos del pacman desde un archivo XML. De esta manera, el juego ejecutará tantos ticks como movimientos distintos se especifiquen en esta fuente de movimientos. Esta implementación se puede ver en entre las líneas 32 y 39.
+% \bigskip
+
+
+% % Código
+% \lstset{ language = Java } % Cambiamos el lenguaje para que parsee en Java
+% \lstinputlisting[label=SerializationTest,caption=``Prueba de la serialización'']{codes/SerializationTest.java} 
+% \bigskip\bigskip
 
 \end{document}
