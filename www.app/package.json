@@ -10,11 +10,11 @@
     "ejs": "*",
     "passport": "*",
     "passport-local": "*",
-	"passport-local": "*",
-	"passport-facebook": "*",
-	"passport-twitter": "*",
-	"passport-google": "*",
-	"pg": "*",
-	"synchronize": "*"
+  	"passport-local": "*",
+  	"passport-facebook": "*",
+  	"passport-twitter": "*",
+  	"passport-google": "*",
+  	"pg": "*",
+  	"synchronize": "*"
   }
 }

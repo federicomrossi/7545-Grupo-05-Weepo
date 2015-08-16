@@ -1,13 +1,14 @@
+var config = require('../config.json');
 var pg = require('pg');
-var conString = "postgres://postgres:postgres@localhost:5432/Weepo";
+var connectionString = "postgres://" + config.bd.user + ":" + config.bd.pass
+ + "@" + config.bd.host + ":" + config.bd.port + "/" + config.bd.db;
 
 
-
- var db = {
+var db = {
 
   query: function(queryString, callback) {
     var res = {};
-    var client = new pg.Client(conString);
+    var client = new pg.Client(connectionString);
     client.connect(function(err) {
       if(err) {
         return console.error('Could not connect to Data Base', err);

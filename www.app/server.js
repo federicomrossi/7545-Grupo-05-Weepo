@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google').Strategy;
-var user = require('./public/app/shared/controllers/UsersController.js');
+var user = require('./controllers/usersController.js');
 
 //
 //  Define the strategy to be used by PassportJS
