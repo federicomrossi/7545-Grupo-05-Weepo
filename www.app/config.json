@@ -1,9 +1,11 @@
 {
 	"bd": {
 		"host": "localhost",
-		"port": 3306,
+		"port": 5432,
 		"authKey": "",
-		"db": "weepo"
+		"db": "Weepo",
+		"user": "postgres",
+		"pass": "postgres"
 	},
 	"express": {
 		"port": 3000

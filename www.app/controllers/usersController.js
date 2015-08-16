@@ -1,5 +1,5 @@
-var model = require('../models/UsersModel.js');
-var db = require('../services/DataBaseService.js');
+var model = require('../models/usersModel.js');
+var db = require('../services/databaseService.js');
 var sync = require('synchronize');
 var fiber = sync.fiber;
 var await = sync.await;
