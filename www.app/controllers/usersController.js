@@ -1,37 +1,107 @@
-var model = require('../models/usersModel.js');
-var db = require('../services/databaseService.js');
-var sync = require('synchronize');
-var fiber = sync.fiber;
-var await = sync.await;
-var defer = sync.defer;
+'use strict';
+
+module.exports.controller = function(app) {
+
+	var passport = require('passport');
+	var LocalStrategy = require('passport-local').Strategy;
+	var FacebookStrategy = require('passport-facebook').Strategy;
+	var TwitterStrategy = require('passport-twitter').Strategy;
+	var GoogleStrategy = require('passport-google').Strategy;
+	var user = require('../models/usersModel.js');
+
+	//
+	//  Define the strategies to be used by PassportJS
+	//
+
+	// Local strategy
+	passport.use(new LocalStrategy(
+	  function(username, password, done) {
+
+	    user.isRegistered(username, function(result) {
+	        console.log("result:", result);
+	        if ((result === null) || (result === 'undefined')) {
+	          return false;
+	        }
+	        if (password == result.password) {
+	          return done(null, {'id': result.user_id, 'username': username, 'name': result.name + " " + result.last_name});    
+	        } else {
+	          return done(null, false, { message: 'Incorrect username.' });
+	        }
+	    });
+	}));
+
+	// Google strategy
+	passport.use(new GoogleStrategy({
+	    returnURL: 'http://www.example.com/auth/google/return',
+	    realm: 'http://www.example.com/'
+	  },
+	  function(identifier, profile, done) {
+	    User.findOrCreate({ openId: identifier }, function(err, user) {
+	      done(err, user);
+	    });
+	  }
+	));
 
 
-var userObject = {
+	// Serialized and deserialized methods when got from session
+	passport.serializeUser(function(user, done) {
+	    done(null, user);
+	});
 
-	create: function(user) {
-		var query = "INSERT INTO Users (username, password, user_id, name, last_name, logged_in, email, social_network) VALUES (" + user.username + ", " + user.password + ", " + user.user_id + ", " + user.name + ", " + user.last_name + ", " + user.logged_in + ", " + user.email + ", " + user.social_network + ");";
-		db.query(query);
-	},
+	passport.deserializeUser(function(user, done) {
+	    done(null, user);
+	});
+
+	// Define a middleware function to be used for every secured routes
+	var auth = function(req, res, next){
+	  if (!req.isAuthenticated()) 
+	  	res.send(401);
+	  else
+	  	next();
+	};
+
+	// Add passport initialization
+	app.use(passport.initialize()); 
+	app.use(passport.session());
 
 
-	isLoggedIn: function(username) {
-		var string = 'SELECT * from \"Users\" WHERE username = ' + username + ";";
-		console.log(string);
-		var result = db.query(string);
-		if ((result === null) || (result === 'undefined')) {
-			return false;
-		}
-		return (result.logged_in === 'true');
-	},
 
-	isRegistered: function(username, callback) {
-		var string = "SELECT * from \"Users\" WHERE username = '" + username + "';";
-		console.log("query", string);
-      	var result = db.query(string, function(result) {
-      		callback(result);
-      	});
-	}
+	//
+	// Routes
+	//
 
-};
+	// Route to get user
+	app.get('/users', auth, function(req, res){
+	  res.send([{name: "user1"}, {name: "user2"}]);
+	});
 
-module.exports = userObject;
+	// Route to test if the user is logged in or not
+	app.get('/loggedin', function(req, res) {
+	  res.send(req.isAuthenticated() ? req.user : '0');
+	});
+
+	// Route to log in
+	app.post('/login', passport.authenticate('local'), function(req, res) {
+	  res.send(req.user);
+	});
+
+	// Route to log out
+	app.post('/logout', function(req, res){
+	  req.logOut();
+	  res.send(200);
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
