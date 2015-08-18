@@ -44,6 +44,40 @@ module.exports =  function() {
       });
     },
 
+    create: function(data, callback) {
+ 
+      var string = '' +
+
+        ' INSERT ' +
+        ' INTO "Campaign"(' +
+        '  name, ' +
+        '  description, ' +
+        '  image_url,' +
+        '  "dateCreation",' +
+        '  "dateStart",' +
+        '  "dateFinish",' +
+        '  brand_id,' +
+        '  deleted,' +
+        '  state)' +
+        ' VALUES (' +
+        '  \'' + data.name +  '\'' +
+        ', \'' + data.description + '\'' +
+        ', \'' + data.image_url + '\'' +
+        ', \'' + data.dateCreation + '\'' +
+        ', \'' + data.dateStart + '\'' +
+        ', \'' + data.dateFinish + '\'' +
+        ', \'' + data.brand_id + '\'' +
+        ', false' + 
+        ', true' +
+        ')';
+
+    console.log(string);
+
+      db.query(string, function(result) {
+        callback(result);
+      });
+    },
+
     attributes: {
 
     }

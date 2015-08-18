@@ -20,7 +20,7 @@
         <h3 class="box-title"> Datos de la Campaña </h3>
       </div><!-- /.box-header -->
       <div class="box-body">
-        <form role="form">
+        <form role="form" data-ng-submit="add_campaign()">
 
           <fieldset>
             <div class="row">
@@ -28,11 +28,11 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
                   <label> Nombre de la campaña </label>
-                  <input type="text" class="form-control"/>
+                  <input data-ng-model="campaign_name" type="text" class="form-control" required/>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
                   <label> Descripción </label>
-                  <textarea class="form-control" rows="3"></textarea>
+                  <textarea data-ng-model="campaign_description" class="form-control" rows="3" required></textarea>
                 </div>
 
               <!-- textarea -->
@@ -43,20 +43,17 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" id="duracion"/>
+                    <input type="text" class="form-control pull-right" id="duration" required/>
+                    <input data-ng-model="campaign_date_start" type="text" class="form-control pull-right hide" id="campaign_date_start"  name="campaign_date_start"/>
+                    <input data-ng-model="campaign_date_finish" type="text" class="form-control pull-right hide" id="campaign_date_finish" name="campaign_date_finish"/>
                   </div><!-- /.input group -->
                 </div><!-- /.form group -->            
               </div>
 
               <div class="col-sx-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-                  <label> Nombre de Responsable </label>
-                  <input type="text" class="form-control" />
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
                   <label>Cargar imagen:</label>
-                  <input id="input-1" type="file" class="file">
+                  <input id="input-1" data-ng-model="campaign_image" type="file" class="file" required>
                 </div>
               </div>
             </div>
@@ -66,9 +63,9 @@
                 <div class="text-right">
                   <button class="btn btn-primary">
                     <i class="fa fa-save"></i> Guardar cambios</button>
-                  <button class="btn btn-default"> 
+                  <a href="#/campaigns" class="btn btn-default" > 
                     <i class="fa fa-times"></i> Cancelar
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -81,49 +78,36 @@
 </section>
 
 
-
-
 <!-- daterange picker -->
 <link href="assets/libs/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
 <!-- date-range-picker -->
 <script src="assets/libs/daterangepicker/moment.js" type="text/javascript"></script>
 <script src="assets/libs/daterangepicker/daterangepicker.js" type="text/javascript"></script>
 
-<!--
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
--->
+<!-- File input -->
 <link href="assets/libs/uploadFile/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-<!--
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
--->
 <script src="assets/libs/uploadFile/fileinput.min.js"></script>
-<!-- bootstrap.js below is only needed if you wish to the feature of viewing details
-     of text file preview via modal dialog -->
-     <!--
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
--->
-<!-- optionally if you need translation for your language then include 
-    locale file as mentioned below -->
 <script src="assets/libs/uploadFile/fileinput_locale_es.js"></script>
-
-
-
-
-
-
 
 <script type="text/javascript">
 
   $(function($){
 
-
     //Date range picker
-    $('#duracion').daterangepicker({
+    $('#duration').daterangepicker({
       locale: {
         format:  'DD-MM-YYYY'
       }
+    }, 
+    function(start, end) {
+        var date_start = $("#campaign_date_start");
+        date_start.val(start.format("YY-MM-DD"));
+        date_start.trigger('input');
+        
+        var date_finish = $("#campaign_date_finish");
+        date_finish.val(end.format("YY-MM-DD"));
+        date_finish.trigger('input');
     });
-
 
   });
 </script>

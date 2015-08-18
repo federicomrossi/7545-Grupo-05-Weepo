@@ -52,7 +52,7 @@
 		            <div class="col-lg-3 col-md-3 col-sm-4 wp-description-card"
                      data-ng-repeat="campaign in campaigns | filter: { state: 'true' }"
                   >
-		              <div class="">
+		              <div>
 		                <h5>{{ campaign.campaign_name }}</h5>
 		                <hr>
 		                <div class="wp-img-container">
@@ -60,27 +60,7 @@
 		                </div>
 		                <p>{{ campaign.description }}</p>
 		                <div class="pull-right">
-		                	<a href="#/campaign/edit/{{ campaign.campaign_id }}" 
-                         class="btn btn-primary"  
-                         data-toggle="tooltip"
-                         title="Editar" 
-                         data-placement="top">
-                          <i class="fa fa-pencil"></i>
-                      </a>
-                      <a href="#/campaign/manage/{{ campaign.campaign_id }}" 
-                         class="btn btn-success" 
-                         data-toggle="tooltip"
-                         title="Gestionar" 
-                         data-placement="top">
-                          <i class="fa fa-gear"></i>
-                      </a>
-                      <a href="#/campaign/delete/{{ campaign.campaign_id }}" 
-                         class="btn btn-danger" 
-                         data-toggle="tooltip"
-                         title="Eliminar" 
-                         data-placement="top">
-                          <i class="fa fa-times"></i>
-                        </a>
+	
 		                </div>
 		              </div>
 		            </div>
@@ -162,38 +142,42 @@
     $('[data-toggle="tooltip"]').tooltip()
   
 
-    $('.team_slider').slick({
-      dots: true,
-      infinite: false,
-      speed: 300,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: false,
-            dots: true
+    setTimeout(function(){
+      //do what you need here
+      $('.team_slider').slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: false,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
           }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
-    });
+        ]
+      });
+    }, 1000);
+
 
   });
 
