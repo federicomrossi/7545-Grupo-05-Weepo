@@ -53,6 +53,13 @@ angular.module('app')
           isLoggedin: checkLoggedin
         }
       })
+      .when('/campaign/new', {
+        templateUrl: 'app/components/newCampaign/newCampaignView.html',
+        controller: 'newCampaignCtrl',
+        resolve: {
+          isLoggedin: checkLoggedin
+        }
+      })
       .when('/events', {
         templateUrl: 'app/components/events/eventsView.html',
         controller: 'EventsCtrl',
@@ -63,13 +70,6 @@ angular.module('app')
       .when('/assistence', {
         templateUrl: 'app/components/marketingAssisstants/marketingAssisstantsView.html',
         controller: 'MarketingAssisstantsCtrl',
-        resolve: {
-          isLoggedin: checkLoggedin
-        }
-      })
-        .when('/new-campaign', {
-        templateUrl: 'app/components/newCampaign/newCampaignView.html',
-        controller: 'newCampaignCtrl',
         resolve: {
           isLoggedin: checkLoggedin
         }
