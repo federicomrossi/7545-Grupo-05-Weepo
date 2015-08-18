@@ -18,19 +18,22 @@ module.exports =  function() {
     isLoggedIn: function(username) {
       var string = 'SELECT * from \"Users\" WHERE username = ' + username + ";";
       console.log(string);
+
       var result = db.query(string);
-      if ((result === null) || (result === 'undefined')) {
+      var query_user = result[0];
+
+      if ((query_user === null) || (query_user === 'undefined')) {
         return false;
       }
-      return (result.logged_in === 'true');
+      return (query_user.logged_in === 'true');
     },
 
     isRegistered: function(username, callback) {
       var string = "SELECT * from \"Users\" WHERE username = '" + username + "';";
       console.log("query", string);
-          var result = db.query(string, function(result) {
-            callback(result);
-          });
+      var result = db.query(string, function(result) {
+        callback(result[0]);
+      });
     },
 
     attributes: {
