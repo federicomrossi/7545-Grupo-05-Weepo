@@ -8,7 +8,7 @@
  * Controller of the app
  */
 angular.module('app')
-  	.controller('CampaignsCtrl', function ($scope, $http) {
+  	.controller('CampaignsCtrl', function ($scope, $http, $route) {
 
   		// Get the campaigns of the brand
 		$http.get('/campaign/get/1')
@@ -24,6 +24,18 @@ angular.module('app')
 		    .error(function(e) {
 		        console.log(e);
 		    });
+
+
+		$scope.delete = function(campaign_id) {
+			// Get the campaigns of the brand
+			$http.post('/campaign/delete/' + campaign_id)
+			    .success(function(res){
+			    	$route.reload();
+			    })
+			    .error(function(e) {
+			        console.log(e);
+			    });
+		};
 
 
 		$scope.convertDate = function(inputFormat) {

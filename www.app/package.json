@@ -6,15 +6,15 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "3.3.5",
     "ejs": "*",
+    "express": "3.3.5",
+    "multer": "^1.0.3",
     "passport": "*",
+    "passport-facebook": "*",
+    "passport-google": "*",
     "passport-local": "*",
-  	"passport-local": "*",
-  	"passport-facebook": "*",
-  	"passport-twitter": "*",
-  	"passport-google": "*",
-  	"pg": "*",
-  	"synchronize": "*"
+    "passport-twitter": "*",
+    "pg": "*",
+    "synchronize": "*"
   }
 }

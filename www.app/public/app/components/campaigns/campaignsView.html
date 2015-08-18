@@ -56,11 +56,31 @@
 		                <h5>{{ campaign.campaign_name }}</h5>
 		                <hr>
 		                <div class="wp-img-container">
-		                  <img src="assets/data/campaign/{{ campaign.image_url }}" alt="img">
+		                  <img ng-src="assets/data/campaign/{{ campaign.image_url }}" alt="img">
 		                </div>
 		                <p>{{ campaign.description }}</p>
 		                <div class="pull-right">
-	
+                      <a href="#/campaign/edit/{{ campaign.campaign_id }}" 
+                         class="btn btn-primary"  
+                         data-toggle="tooltip"
+                         title="Editar" 
+                         data-placement="top">
+                          <i class="fa fa-pencil"></i>
+                      </a>
+                      <a href="#/campaign/manage/{{ campaign.campaign_id }}" 
+                         class="btn btn-success" 
+                         data-toggle="tooltip"
+                         title="Gestionar" 
+                         data-placement="top">
+                          <i class="fa fa-gear"></i>
+                      </a>
+                      <a href="" ng-click="delete(campaign.campaign_id)"
+                         class="btn btn-danger" 
+                         data-toggle="tooltip"
+                         title="Eliminar" 
+                         data-placement="top">
+                          <i class="fa fa-times"></i>
+                      </a>
 		                </div>
 		              </div>
 		            </div>
@@ -114,7 +134,7 @@
                            data-placement="top">
                             <i class="fa fa-gear"></i>
                         </a>
-                        <a href="#/campaign/delete/{{ campaign.campaign_id }}" 
+                        <a href="" ng-click="delete(campaign.campaign_id)"
                            class="btn btn-danger" 
                            data-toggle="tooltip"
                            title="Eliminar" 
@@ -138,8 +158,16 @@
 <script src="assets/libs/slick/slick.min.js"></script>  
 <script type="text/javascript">
 
+function confirm() {
+  bootbox.confirm("Se eliminará la campaña, ¿Desea continuar?", function(result) {
+    return result;
+  }); 
+}
+
   $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
+
+
   
 
     setTimeout(function(){
@@ -176,8 +204,7 @@
           }
         ]
       });
-    }, 1000);
-
+    }, 500);
 
   });
 

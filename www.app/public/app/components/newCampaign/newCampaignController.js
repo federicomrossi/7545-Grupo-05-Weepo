@@ -29,7 +29,7 @@ angular.module('app')
 			var post_data = {
 				name: $scope.campaign_name,
 				description: $scope.campaign_description,
-				image_url: '',
+				image_url: $scope.campaign_img_url,
 				dateCreation: formatDate(today),
 				dateStart: $scope.campaign_date_start,
 				dateFinish: $scope.campaign_date_finish
@@ -44,10 +44,24 @@ angular.module('app')
 			    .error(function(e) {
 			        console.log(e);
 			    });
-		}
+		};
 
+		$scope.uploadFile = function(files) {
 
+		    var fd = new FormData();
+		    fd.append("images", files[0]);
+		    fd.append("old_image_url", $scope.campaign_img_url);
 
-
-		
+		    $http.post("/campaign/uploadImage", fd, {
+		        withCredentials: true,
+		        headers: {'Content-Type': undefined },
+		        transformRequest: angular.identity
+		    })
+	    	.success(function(res){
+		    	$scope.campaign_img_url = res.image_url;
+		    })
+		    .error(function(e) {
+		        console.log(e);
+		    });
+		};		
   });

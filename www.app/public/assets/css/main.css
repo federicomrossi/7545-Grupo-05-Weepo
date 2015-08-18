@@ -83,7 +83,8 @@
 
 .wp-description-card p {
   margin-top: 10px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  min-height: 100px !important;
 }
 
 .wp-logo {
