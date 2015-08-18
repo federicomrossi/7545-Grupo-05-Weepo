@@ -67,6 +67,13 @@ angular.module('app')
           isLoggedin: checkLoggedin
         }
       })
+        .when('/new-campaign', {
+        templateUrl: 'app/components/newCampaign/newCampaignView.html',
+        controller: 'newCampaignCtrl',
+        resolve: {
+          isLoggedin: checkLoggedin
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });
