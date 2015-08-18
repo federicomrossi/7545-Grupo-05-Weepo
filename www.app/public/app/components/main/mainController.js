@@ -8,7 +8,7 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $http) {
 
   		var changeNoveltyToWeekly = function() {
   			console.log("Soy semanal");
@@ -38,6 +38,4 @@ angular.module('app')
   			itemSelected.callback();
 
   		}
-
-  		
   });

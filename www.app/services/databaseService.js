@@ -26,10 +26,11 @@ module.exports = function() {
             return console.error('Error running query', err);
           }
 
-          console.log(result.rows[0]);
-          res = result.rows[0];
+          console.log(result.rows);
+          res = result.rows;
           client.end();
-          callback(res);
+
+          if(callback !== null) callback(res);
         });
       });
     }
