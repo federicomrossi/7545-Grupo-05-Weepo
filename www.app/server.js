@@ -36,6 +36,25 @@ app.get('/', function(req, res){
   res.render('index', { title: 'Express' });
 });
 
+
+////////////////////////////////////////////////////////////////
+//  TEMP ROUTES
+//
+var data = require('./temp/config_MedidoresDeExito.json');
+app.get('/get/data', function(req, res){
+  res.send(data);
+});
+
+app.post('/set/data', function(req, res){
+	fs.writeFileSync('./temp/config_MedidoresDeExito.json', JSON.stringify(req.body));
+	data = req.body;
+	res.send(200);
+});
+
+////////////////////////////////////////////////////////////////
+
+
+
 // Development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());

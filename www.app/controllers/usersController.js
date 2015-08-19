@@ -23,7 +23,12 @@ module.exports.controller = function(app) {
 	          return false;
 	        }
 	        if (password == result.password) {
-	          return done(null, {'id': result.user_id, 'username': username, 'name': result.name + " " + result.last_name});    
+	          return done(null, {
+	          	'id': result.user_id, 
+	          	'username': username, 
+	          	'name': result.name + " " + result.last_name,
+	          	'brand_name': result.brand_name
+	          });    
 	        } else {
 	          return done(null, false, { message: 'Incorrect username.' });
 	        }

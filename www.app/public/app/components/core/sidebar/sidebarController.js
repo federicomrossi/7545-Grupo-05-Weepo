@@ -10,7 +10,6 @@
 angular.module('app')
   .controller('SidebarCtrl', function ($scope, $element, $attrs, $location, authorizeService) {
   	
-
 	$scope.menuItems = [
 
         // Forma de uso:

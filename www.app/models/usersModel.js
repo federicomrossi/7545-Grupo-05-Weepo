@@ -16,7 +16,38 @@ module.exports =  function() {
     },
 
     isLoggedIn: function(username) {
-      var string = 'SELECT * from \"Users\" WHERE username = ' + username + ";";
+      
+      var string = '' +
+
+        ' SELECT ' +
+        '   "Users".name, ' +
+        '   "Users".logged_in, ' +
+        '   "Users".username, ' +
+        '   "Users".social_network, ' +
+        '   "Users".email, ' +
+        '   "Users".last_name, ' +
+        '   "Users".user_id, ' +
+        '   "Users".password, ' +
+        '   "Users".deleted, ' +
+        '   "ClientUser".user_id, ' +
+        '   "ClientUser".brand_id, ' +
+        '   "Brand".name AS brand_name, ' +
+        '   "Brand".plan_id AS brand_plan_id, ' +
+        '   "Brand".email AS brand_email, ' +
+        '   "Brand".id AS brand_id, ' +
+        '   "Brand".next_payment AS brand_next_payment, ' +
+        '   "Brand".deleted AS brand_deleted' +
+        ' FROM ' +
+        '   public."Users", ' +
+        '   public."ClientUser", ' +
+        '   public."Brand"' +
+        ' WHERE ' +
+        '   "ClientUser".user_id = "Users".user_id  AND' +
+        '   "ClientUser".brand_id = "Brand".id AND' +
+        '   "Users".deleted = false AND' +
+        '   "Brand".deleted = false AND' +
+        '   "Users".username = \'' + username + '\'';
+      
       console.log(string);
 
       var result = db.query(string);
@@ -29,7 +60,37 @@ module.exports =  function() {
     },
 
     isRegistered: function(username, callback) {
-      var string = "SELECT * from \"Users\" WHERE username = '" + username + "';";
+      var string = '' +
+
+        ' SELECT ' +
+        '   "Users".name, ' +
+        '   "Users".logged_in, ' +
+        '   "Users".username, ' +
+        '   "Users".social_network, ' +
+        '   "Users".email, ' +
+        '   "Users".last_name, ' +
+        '   "Users".user_id, ' +
+        '   "Users".password, ' +
+        '   "Users".deleted, ' +
+        '   "ClientUser".user_id, ' +
+        '   "ClientUser".brand_id, ' +
+        '   "Brand".name AS brand_name, ' +
+        '   "Brand".plan_id AS brand_plan_id, ' +
+        '   "Brand".email AS brand_email, ' +
+        '   "Brand".id AS brand_id, ' +
+        '   "Brand".next_payment AS brand_next_payment, ' +
+        '   "Brand".deleted AS brand_deleted' +
+        ' FROM ' +
+        '   public."Users", ' +
+        '   public."ClientUser", ' +
+        '   public."Brand"' +
+        ' WHERE ' +
+        '   "ClientUser".user_id = "Users".user_id  AND' +
+        '   "ClientUser".brand_id = "Brand".id AND' +
+        '   "Users".deleted = false AND' +
+        '   "Brand".deleted = false AND' +
+        '   "Users".username = \'' + username + '\'';
+
       console.log("query", string);
       var result = db.query(string, function(result) {
         callback(result[0]);

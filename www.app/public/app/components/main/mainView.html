@@ -57,50 +57,31 @@
               <fieldset>
                 <!-- Minimal style -->
                 <div class="row">
-                      <label class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="font-weight: normal !important;"> Cantidad de menciones </label>
-                      <input type="checkbox" class="minimal col-xs-4 col-sm-4 col-md-4 col-lg-4"/>         
+                      <label class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="font-weight: normal !important;"> Cantidad de menciones </label>
+                      <input type="checkbox" class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-model="medidores['menciones']" ng-change="updateData()"/>     
 
     
                 </div>
-              </fieldset>
-                  
-
-              <fieldset>
                 <!-- Minimal style -->
                 <div class="row">
-                      <label class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="font-weight: normal !important;"> Cantidad de seguidores </label>
-                      <input type="checkbox" class="minimal col-xs-4 col-sm-4 col-md-4 col-lg-4"/>         
+                      <label class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="font-weight: normal !important;"> Cantidad de seguidores </label>
+                      <input type="checkbox" class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-model="medidores['seguidores']" ng-change="updateData()"/>         
 
                   <!-- SLIDER -->
     
                 </div>
-              </fieldset>
-
-
-              <fieldset>
                 <!-- Minimal style -->
                 <div class="row">
-                  <label class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="font-weight:normal !important;"> Impacto demográfico </label>
-                  <input type="checkbox" class="minimal col-xs-4 col-sm-4 col-md-4 col-lg-4"/>         
+                  <label class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="font-weight:normal !important;"> Impacto demográfico </label>
+                  <input type="checkbox" class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-model="medidores['demografico']" ng-change="updateData()"/>         
                 </div>
-
-                 
-                  <!-- SLIDER -->
-                  <!--
-                  <div class="clearfix visible-sm-block"></div>
-
-                  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 form-group">
-                    <label class="text-muted control-label" style="font-weight: normal !important; text-align:left !important;"> Importancia </label>
-                  </div>
-                  -->
                   
               </fieldset>
           </form>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar cambios</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -117,7 +98,7 @@
         <span class="info-box-icon bg-aqua"><i class="fa fa-group"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Nuevos<br/> seguidores</span>
-          <span class="info-box-number">1544</span>
+          <span class="info-box-number">{{ mediciones['seguidores'] + base_seguidores }}</span>
         </div><!-- /.info-box-content -->
       </div><!-- /.info-box -->
     </div><!-- /.col -->
@@ -126,7 +107,7 @@
         <span class="info-box-icon bg-red"><i class="fa fa-comments"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Cantidad de<br/> menciones</span>
-          <span class="info-box-number">523</span>
+          <span class="info-box-number">{{ mediciones['menciones']  + base_menciones }}</span>
         </div><!-- /.info-box-content -->
       </div><!-- /.info-box -->
     </div><!-- /.col -->
@@ -139,7 +120,7 @@
         <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Me gusta<br/>obtenidos</span>
-          <span class="info-box-number">8422</span>
+          <span class="info-box-number">{{ mediciones['megusta'] + base_megusta }}</span>
         </div><!-- /.info-box-content -->
       </div><!-- /.info-box -->
     </div><!-- /.col -->

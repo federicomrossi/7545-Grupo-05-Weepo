@@ -313,6 +313,67 @@
     font-family: arial;
 }
 
+/*
+ * Component: modal
+ * ----------------
+ */
+.modal {
+  background: rgba(0, 0, 0, 0.3);
+}
+.modal-content {
+  width: 350px;
+  margin: 0 auto;
+  border-radius: 0;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125) !important;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125) !important;
+  border: 0;
+}
+.modal h4 {
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+  .modal-content {
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125) !important;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125) !important;
+  }
+}
+.modal-header {
+  border-bottom-color: #f4f4f4;
+}
+.modal-footer {
+  border-top-color: #f4f4f4;
+}
+.modal-primary .modal-header,
+.modal-primary .modal-footer {
+  border-color: #307095;
+}
+.modal-warning .modal-header,
+.modal-warning .modal-footer {
+  border-color: #c87f0a;
+}
+.modal-info .modal-header,
+.modal-info .modal-footer {
+  border-color: #0097bc;
+}
+.modal-success .modal-header,
+.modal-success .modal-footer {
+  border-color: #00733e;
+}
+.modal-danger .modal-header,
+.modal-danger .modal-footer {
+  border-color: #c23321;
+}
+
+.modal input[type="checkbox"] {
+  width: 25px !important;
+  height: 25px !important;
+}
+.model label {
+  display: inline-block;
+  height: 25px !important;
+  vertical-align: middle !important;
+}
+
 
 /*
  * Angular
