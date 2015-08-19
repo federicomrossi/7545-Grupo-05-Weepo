@@ -596,16 +596,42 @@ Luego, el sitio será traducido al ingl\'{e}s y nuevas alianzas se harán para a
 
 % CAPITULO X
 \section{Backend}
-	El backend es donde corre la aplicaci\'{o}n real, donde se encuentra la l\'{o}gica del programa y donde se encuentran programadas las reglas del negocio, as\'{i} como tambi\'{e}n las conexiones con las bases de datos y API's.
+	El backend es donde corre la aplicaci\'{o}n real, donde se encuentra la l\'{o}gica del programa y donde se encuentran programadas las reglas del negocio, as\'{i} como tambi\'{e}n las conexiones con las bases de datos y API's.\\
+	
+	
+Para el servidor en donde procesaremos todas las solicitudes, hemos optado por utilizar Node.js, un entorno de ejecuci\'{o}n de aplicaciones multiplataforma que utiliza javascript. Es decir, estamos utilizando javascript del lado del servidor. Utilizar Node.js nos proporciona un rendimiento y una escalabilidad muy elevadas dada la arquitectura orientada a eventos y APIs no bloqueantes que provee. La aplicación hecha en Node.js es la que actuar\'{a} como Servidor web.\\
+
+Para el almacenamiento de los datos, necesitamos por un lado tener cierta estructura para el registro de usuarios. Sin embargo, tambi\'{e}n vamos a tener que almacenar datos que carecen de una estructura definida, tales como pueden ser las distintas m\'{e}tricas obtenidas de las diferentes redes sociales, las cuales var\'{i}an en su formato, por lo que vamos a requerir cierta flexibilidad, en nuestro caso, para guardar datos con formato JSON.\\
+Por esta raz\'{o}n es que hemos elegido utilizar PostgreSQL, un motor de base de datos h\'{i}brido en el que conviven caracter\'{i}sticas de las bases de datos relacionales y no relacionales.\\
+
+Entonces, las ventajas que pudimos ver en usar PostgreSQL como motor de bases de datos son:
+
+\begin{itemize}
+
+\item La posibilidad de utilizar bases de datos no relacionales, las cuales son f\'{a}cilmente escalables, esto quiere decir, que pueden crecer mucho sin necesidad de realizar cambios a su estructura, una caracter\'{i}stica de importancia para el volumen de datos que manejamos. 
+
+\item El ahorro de ancho de banda.
+
+\item Las operaciones que podemos realizar sobre los datos almacenados (en formato JSONB), tales como b\'{u}squedas indexadas, las cuales son mucho m\'{a}s r\'{a}pidas que en bases de datos relacionales. Esta caracter\'{i}stica es relevante ya que para nuestro negocio la performance es de vital importancia.
+
+\item  Y por si no fuera poco, PostgreSQL es muy escalable horizontalmente, lo que significa que ante la necesidad de ampliar el procesamiento, es posible agregar m\'{a}s equipos que distribuyan la carga.
+
+\end{itemize}
+
+
+Es claro que hemos usado muchos frameworks que conviven entre s\'{i}. Estos nos facilitan el desarrollo al contar con soluciones previamente codificadas a problemas conocidos y de uso diario. Por lo tanto, estamos ahorrando tiempo, y por ende, dinero, d\'{a}ndonos lugar a plasmar nuestra idea sobre bases s\'{o}lidas en forma veloz. \\
+
+
+En resumen, se utilizar\'{a}n:
 	
 	\begin{itemize}
-		\item NodeJS
-		\item API's (Facebook, Twitter, Google+, etc).
-		\item PostgreSQL
-		\item PgAdmin III
+		\item \textbf{NodeJS} para el servidor 
+		\item \textbf{API's de redes sociales} para provisionamiento de datos: Facebook, Twitter, Google+, etc.
+		\item \textbf{PostgreSQL} como motor de base de datos.
+		\item \textbf{PgAdmin III} como administrador de esquemas de base de datos.
+		
 	\end{itemize}
 	
-yo
 \newpage
 
 
@@ -672,16 +698,23 @@ En orden de obtener los datos requeridos se utilizarán las API's proveidas por 
 	Existen otras API's proveidas por Facebook, aunque su acceso es restringido a usuarios con ciertos permisos. Para tener tales permisos se debe enviar una solicitud a Facebook para el uso de estas API's.
 	Estas son:
 	\begin{itemize}
-		\item Public Feed API
-		\item Keyword Insights API
+		\item \textbf{Public Feed API:} Permite mostrar en tiempo real la actividad p\'{u}blica relacionada a un cierto t\'{e}rmino (tal como “Messi” o “Grammys”). Solo posts p\'{u}blicos de p\'{a}ginas y usuarios importantes con la opci\'{o}n “seguir” activada podr\'{a}n ser mostrados. Esto permite saber las opiniones del p\'{u}blico acerca de un cierto tema.
+		\item \textbf{Keyword Insights API:} Permite saber la cantidad total de menciones de un t\'{e}rmino en una cierta ventana de tiempo, haciendo m\'{a}s f\'{a}cil a nuevas organizaciones ver cuanta gente estaba hablando acerca de un evento antes, durante o despu\'{e}s del mismo. Tambi\'{e}n permite mostrar cifras an\'{o}nimas con filtros como g\'{e}nero, edad y localizaci\'{o}n. Esto permite saber qu\'{e} es trending topic, entre otras cosas.
 	\end{itemize}
 	
 \bigskip
 
 \subsection{Twitter}
+Las APIs disponibles para acceder a contenido de twitter son:
+\begin{itemize}
+	\item \textbf{Public API:} Esta API provee acceso a contenidos de Twitter para lectura y escritura. Publicar un nuevo tweet, obtener datos del perfil de una persona y de seguidores, y mucho mas.
+	\textbf{Streaming API:} Permite acceso a datos de Twitter en tiempo real, tal como la Keywords Insights API y la Public Feed API de Facebook.
+\end{itemize}
+
+
 Se necesita registrar la aplicaci\'{o}n que se va a utilizar en Twitter\footnote{\url{https://apps.twitter.com/}}. Una vez registrada se podr\'{a}n ver los datos necesarios para poder acceder a la API Rest que brinda Twitter.
 
-	\subparagraph*{REST API\footnote{\url{https://dev.twitter.com/rest/public}}}
+	\subparagraph*{Public API\footnote{\url{https://dev.twitter.com/rest/public}}}
 	Algunos ejemplos de su uso pueden ser los siguientes:
 
 	\begin{itemize}
@@ -706,8 +739,14 @@ Se necesita registrar la aplicaci\'{o}n que se va a utilizar en Twitter\footnote
 \subsection{Google+}
 
 	\subparagraph*{Page API}
-	Esta API provee, al igual que Insights de Facebook, informaci\'{o}n sobre el desempe\~{n}o de ña p\'{a}gina de Google+, publicaciones compartidas, respondidas, vistas; visitas a la p\'{a}gina, menciones, etc. 
-	Para poder usarla es necesario llenar un formulario y enviarlo como solicitud a Google.  
+	Google brinda una API para manejo de páginas de Google+, obtener datos de seguidores, publicaciones y publicar contenido. Esta API es la \textbf{Page API} y debe enviarse una solicitud a Google para poder utilizarla.
+	\subparagraph*{Analytics APIs}
+Además Google provee del servicio de Google Analytics muy similar al servicio de Insights de Facebook. Este servicio tiene disponibles las siguientes APIs para consulta de datos enriquecidos y métricas:
+	\begin{itemize}
+		\item \textbf{Real Time Reporting API} 
+		\item \textbf{Core Reporting API}
+	\end{itemize}
+
 
 
 
@@ -743,8 +782,10 @@ El modelo de datos consistir\'{a} en el siguiente esquema:
 % CAPITULO X
 \section{Puesta en producción}
 
-	[ Colocar texto aquí ]
-\bigskip
+El desarrollo es muy importante, pero al comenzarlo es crítico tener en mente cómo va a ser la puesta en producción, es decir, dónde vamos a alojar nuestra aplicación. Debemos estar preparados para un posible éxito, y esto significa que el hosting que elijamos debe ser capaz de darnos la oportunidad de escalar los servicios para lograr un rendimiento sostenido.\\
+Por suerte son varias las opciones entre las cuales podemos elegir, entre las más conocidas AWS, Google Cloud Platform y Microsoft Azure. Pero para empezar nos decidimos por OpenShift ya que proveen de un plan gratuito con posibilidad de habilitar planes pagos en forma automática y escalabilidad instantánea de nuestra aplicación cuando sea oportuno, además poder apuntar en forma gratuita el dominio del sitio web de Weepo.
+
+\newpage
 
 
 
@@ -758,7 +799,7 @@ El modelo de datos consistir\'{a} en el siguiente esquema:
 % CAPITULO Y
 \section{Alcance}
 
-	[ Colocar texto aquí ]
+En esta secci\'{o}n se mostrar\'{a}n algunas pantallas que intentan ilustrar algunas de los puntos de acceso del usuario y las funcionalidades b\'{a}sicas de la herramienta.
 \bigskip
 
 
