@@ -1458,7 +1458,7 @@ div[data-dimension] {
 
 
 .single_client {
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
   display: inline;
   float: left;
   text-align: center;
