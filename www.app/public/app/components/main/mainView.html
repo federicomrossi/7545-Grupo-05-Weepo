@@ -72,8 +72,8 @@
                 </div>
                 <!-- Minimal style -->
                 <div class="row">
-                  <label class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="font-weight:normal !important;"> Impacto demográfico </label>
-                  <input type="checkbox" class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-model="medidores['demografico']" ng-change="updateData()"/>         
+                  <label class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="font-weight:normal !important;"> Cantidad de Me Gusta </label>
+                  <input type="checkbox" class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ng-model="medidores['megusta']" ng-change="updateData()"/>         
                 </div>
                   
               </fieldset>
@@ -129,7 +129,9 @@
         <span class="info-box-icon bg-yellow"><i class="fa fa-line-chart"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Éxito comparado al<br/> periodo anterior</span>
-          <span class="info-box-number"><i class="fa fa-arrow-up"></i> 38<small>%</small></span>
+          <span class="info-box-number" ng-class="{'text-danger': crecimiento < 0}"
+          ><i class="fa fa-arrow-up"  
+          ng-class="{'fa-arrow-up': crecimiento >= 0, 'fa-arrow-down': crecimiento < 0}"></i> {{ crecimiento }}<small>%</small></span>
         </div><!-- /.info-box-content -->
       </div><!-- /.info-box -->
     </div><!-- /.col -->

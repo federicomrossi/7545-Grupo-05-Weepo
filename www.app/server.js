@@ -46,7 +46,7 @@ app.get('/get/data', function(req, res){
 });
 
 app.post('/set/data', function(req, res){
-	fs.writeFileSync('./temp/config_MedidoresDeExito.json', JSON.stringify(req.body));
+	fs.writeFileSync('./temp/config_MedidoresDeExito.json', JSON.stringify(req.body, null, "\t"));
 	data = req.body;
 	res.send(200);
 });

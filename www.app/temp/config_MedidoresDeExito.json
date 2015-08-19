@@ -1,1 +1,36 @@
-{"medidores":{"menciones":true,"seguidores":true,"demografico":false},"mediciones":{"seguidores":24,"menciones":22,"megusta":53,"anual":{"base_seguidores":5000,"base_menciones":2500,"base_megusta":10000},"mensual":{"base_seguidores":1000,"base_menciones":500,"base_megusta":5000},"semanal":{"base_seguidores":100,"base_menciones":200,"base_megusta":1000}}}
+{
+	"medidores": {
+		"menciones": false,
+		"seguidores": true,
+		"megusta": false
+	},
+	"mediciones": {
+		"seguidores": 5,
+		"menciones": 7,
+		"megusta": 13,
+		"anual": {
+			"base_seguidores": 5000,
+			"base_menciones": 2500,
+			"base_megusta": 10000,
+			"periodo_anterior_seguidores": 4000,
+			"periodo_anterior_menciones": 1300,
+			"periodo_anterior_megusta": 4709
+		},
+		"mensual": {
+			"base_seguidores": 1000,
+			"base_menciones": 500,
+			"base_megusta": 5000,
+			"periodo_anterior_seguidores": 434,
+			"periodo_anterior_menciones": 132,
+			"periodo_anterior_megusta": 7000
+		},
+		"semanal": {
+			"base_seguidores": 100,
+			"base_menciones": 200,
+			"base_megusta": 1000,
+			"periodo_anterior_seguidores": 89,
+			"periodo_anterior_menciones": 500,
+			"periodo_anterior_megusta": 2000
+		}
+	}
+}
