@@ -25,6 +25,7 @@ module.exports =  function() {
         '  "Campaign".brand_id, ' +
         '  "Campaign".deleted, ' +
         '  "Campaign".state, ' +
+        '  "Campaign".temp_percentage, ' +
         '  "Brand".name AS brand_name, ' +
         '  "Brand".deleted, ' +
         '  "Brand".next_payment, ' +
@@ -58,6 +59,7 @@ module.exports =  function() {
         '  "dateFinish",' +
         '  brand_id,' +
         '  deleted,' +
+        '  temp_percentage,' +
         '  state)' +
         ' VALUES (' +
         '  \'' + data.name +  '\'' +
@@ -68,6 +70,7 @@ module.exports =  function() {
         ', \'' + data.dateFinish + '\'' +
         ', \'' + data.brand_id + '\'' +
         ', false' + 
+        ', 0' + 
         ', true' +
         ')';
 

@@ -60,6 +60,13 @@ angular.module('app')
           isLoggedin: checkLoggedin
         }
       })
+      .when('/campaign/statistics', {
+        templateUrl: 'app/components/main/mainView.html',
+        controller: 'StatisticsCtrl',
+        resolve: {
+          isLoggedin: checkLoggedin
+        }
+      })
       .when('/events', {
         templateUrl: 'app/components/events/eventsView.html',
         controller: 'EventsCtrl',

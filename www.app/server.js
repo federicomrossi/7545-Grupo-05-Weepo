@@ -51,6 +51,18 @@ app.post('/set/data', function(req, res){
 	res.send(200);
 });
 
+
+var data_campaign = require('./temp/config_MedidoresDeExito_campania.json');
+app.get('/get/data_campaign', function(req, res){
+  res.send(data_campaign);
+});
+
+app.post('/set/data_campaign', function(req, res){
+	fs.writeFileSync('./temp/config_MedidoresDeExito_campania.json', JSON.stringify(req.body, null, "\t"));
+	data_campaign = req.body;
+	res.send(200);
+});
+
 ////////////////////////////////////////////////////////////////
 
 

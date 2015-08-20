@@ -8,24 +8,9 @@
  * Controller of the app
  */
 angular.module('app')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('StatisticsCtrl', function ($scope, $http) {
 
-      $scope.i_am_campaign = false;
-
-      // Get the campaigns of the brand
-      $http.get('/campaign/get/1')
-        .success(function(res){
-           
-          $scope.campaigns = res;
-          $scope.active_campaigns = 0;
-          $scope.campaigns.forEach(function(item) {
-            if(item.state == true)
-              $scope.active_campaigns++;
-        });
-        })
-        .error(function(e) {
-            console.log(e);
-        });
+      $scope.i_am_campaign = true;
 
   		var changeNoveltyToWeekly = function() {
   			console.log("Soy semanal");
@@ -82,7 +67,7 @@ angular.module('app')
       $scope.crecimiento = 0;
 
 
-      $http.get('/get/data')
+      $http.get('/get/data_campaign')
           .success(function(res){
             console.log(res);
             account_config = res;
@@ -122,7 +107,7 @@ angular.module('app')
         account_config.mediciones.megusta = $scope.mediciones["megusta"];
 
         // Get the campaigns of the brand
-        $http.post('/set/data', account_config)
+        $http.post('/set/data_campaign', account_config)
             .success(function(res){
               
             })

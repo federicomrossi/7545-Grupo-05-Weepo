@@ -60,6 +60,13 @@
 		                </div>
 		                <p>{{ campaign.description }}</p>
 		                <div class="pull-right">
+                      <a href="#/campaign/statistics/" 
+                         class="btn btn-info"  
+                         data-toggle="tooltip"
+                         title="Estadísticas" 
+                         data-placement="top">
+                          <i class="fa fa-bar-chart"></i>
+                      </a>
                       <a href="#/campaign/edit/{{ campaign.campaign_id }}" 
                          class="btn btn-primary"  
                          data-toggle="tooltip"
@@ -120,6 +127,13 @@
                               ng-class="{ 'label-success': campaign.state, 'label-warning': !campaign.state }">{{ (campaign.state) ? 'Activa' : 'Inactiva' }}</span>
                       </td>
                       <td>
+                        <a href="#/campaign/statistics/" 
+                           class="btn btn-info"  
+                           data-toggle="tooltip"
+                           title="Estadísticas" 
+                           data-placement="top">
+                            <i class="fa fa-bar-chart"></i>
+                        </a>
     			            	<a href="#/campaign/edit/{{ campaign.campaign_id }}" 
                            class="btn btn-primary"  
                            data-toggle="tooltip"
@@ -204,7 +218,7 @@ function confirm() {
           }
         ]
       });
-    }, 500);
+    }, 1000);
 
   });
 

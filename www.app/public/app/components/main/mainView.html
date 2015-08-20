@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" ng-show="!i_am_campaign">
   <h1>
     Inicio
     <small>Resumen e información general</small>
@@ -9,6 +9,17 @@
     <li class="active">Inicio</li>
   </ol>
 </section>
+<section class="content-header" ng-show="i_am_campaign">
+  <h1>
+    Estadísticas de campaña
+  </h1>
+  <ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i> Dashboard</li>
+    <li>Administrar campañas</li>
+    <li class="active">Estadísticas de campaña</li>
+  </ol>
+</section>
+
 
 <section class="content">
   
@@ -32,7 +43,7 @@
           <li>
             <a href="" type="button" data-toggle="modal" data-target="#confSuccessModal">
               <i class="fa fa-pie-chart"></i>  
-              &nbsp; Configurar medidores de éxito global
+              &nbsp; Configurar medidores de éxito <span ng-show="!i_am_campaign">global</span>
             </a>
           </li>
         </ul>
@@ -131,7 +142,7 @@
           <span class="info-box-text">Éxito comparado al<br/> periodo anterior</span>
           <span class="info-box-number" ng-class="{'text-danger': crecimiento < 0}"
           ><i class="fa fa-arrow-up"  
-          ng-class="{'fa-arrow-up': crecimiento >= 0, 'fa-arrow-down': crecimiento < 0}"></i> {{ crecimiento }}<small>%</small></span>
+          ng-class="{'fa-arrow-up': crecimiento >= 0, 'fa-arrow-down': crecimiento < 0}"></i> {{ crecimiento  | number:2 }}<small>%</small></span>
         </div><!-- /.info-box-content -->
       </div><!-- /.info-box -->
     </div><!-- /.col -->
@@ -139,7 +150,7 @@
 
 
 
-  <div class="row">
+  <div class="row" ng-show="!i_am_campaign">
     <div class="col-md-12">
       <div class="box box-primary">
         <div class="box-header with-border bg-blue">
@@ -176,20 +187,20 @@
                 <strong>Éxito alcanzado</strong>
                 <hr class="wp-hr-clean">
               </p>
-              <div class="progress-group">
-                <span class="progress-text">Campaña 01</span>
-                <span class="progress-number"><b>80</b>/100</span>
+              <div class="progress-group" data-ng-repeat="campaign in campaigns">
+                <span class="progress-text">{{ campaign.campaign_name }}</span>
+                <span class="progress-number"><b>{{ campaign.temp_percentage }}</b>/100</span>
                 <div class="progress sm">
-                  <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                  <div class="progress-bar progress-bar-aqua" ng-attr-style="width: {{ campaign.temp_percentage }}%"></div>
                 </div>
               </div><!-- /.progress-group -->
-              <div class="progress-group">
+              <!-- <div class="progress-group">
                 <span class="progress-text">Campaña 02</span>
                 <span class="progress-number"><b>40</b>/100</span>
                 <div class="progress sm">
                   <div class="progress-bar progress-bar-red" style="width: 40%"></div>
                 </div>
-              </div><!-- /.progress-group -->
+              </div> --><!-- /.progress-group -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </div><!-- ./box-body -->
@@ -210,9 +221,9 @@
         <div class="box box-primary">
           <div class="box-header with-border bg-blue">
             <i class="fa fa-bar-chart-o"></i>
-            <h3 class="box-title">Interactive Area Chart</h3>
+            <h3 class="box-title">Éxito a través del tiempo</h3>
             <div class="box-tools pull-right">
-              Real time
+              Tiempo real
               <div class="btn-group" id="realtime" data-toggle="btn-toggle">
                 <button type="button" class="btn btn-default btn-xs active" data-toggle="on">On</button>
                 <button type="button" class="btn btn-default btn-xs" data-toggle="off">Off</button>
@@ -251,17 +262,17 @@
                   <div class="description-block margin-bottom">
                     <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
                     <h5 class="description-header">8390</h5>
-                    <span class="description-text">Visits</span>
+                    <span class="description-text">Visitas</span>
                   </div><!-- /.description-block -->
                   <div class="description-block margin-bottom">
                     <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
                     <h5 class="description-header">30%</h5>
-                    <span class="description-text">Referrals</span>
+                    <span class="description-text">Referidos</span>
                   </div><!-- /.description-block -->
                   <div class="description-block">
                     <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
                     <h5 class="description-header">70%</h5>
-                    <span class="description-text">Organic</span>
+                    <span class="description-text">Organicas</span>
                   </div><!-- /.description-block -->
                 </div>
               </div><!-- /.col -->
