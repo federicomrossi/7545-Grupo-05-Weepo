@@ -197,7 +197,7 @@
 \begin{titlepage}
 	\vspace*{\fill}
 	\begin{center}
-		\Huge{Weepo} \\
+		\Huge\textbf{Weepo} \\
 		\medskip
 		\huge \textit{``Carpeta de proyecto''} \\
 		
@@ -215,8 +215,8 @@
 		\Large Jasmina Sella Faena, Padrón Nro. 91.958 \\
 		\large \textit{jasminasf@gmail.com} \\ \medskip
 
-		\Large Ezequiel Reyes, Padrón Nro. 90.000 \\
-		\large \textit{COMPLETAR@gmail.com} \\ \medskip
+		\Large Ezequiel Reyes, Padrón Nro. 92.119 \\
+		\large \textit{ezequielmreyes@gmail.com} \\ \medskip
 		
 		\Large Federico Martín Rossi, Padrón Nro. 92.086 \\
 		\large \textit{federicomrossi@gmail.com} \\
@@ -563,11 +563,12 @@ Luego, el sitio será traducido al ingl\'{e}s y nuevas alianzas se harán para a
 	\caption{Diagrama representativo del stack y las \\ tecnologías que la componen.}
 	\medskip
 \end{figure}
-\bigskip
+
+\newpage
 
 
 % CAPITULO X
-\subsection{Frontend}
+\section{Frontend}
 
 	El Frontend es la división representada por el cliente, el cual, en nuestro caso está protagonizado por el navegador utilizado por este. Para esta parte se utilizarán las siguientes tecnologías:
 
@@ -579,15 +580,14 @@ Luego, el sitio será traducido al ingl\'{e}s y nuevas alianzas se harán para a
 		
 		\item \textit{CSS3}: Las hojas de estilo nos permiten definir de manera eficiente la representación de nuestras páginas en cuanto al diseño y visualización de estas. Permiten definir estructuras guiadas por el futuro atractivo proyectado para nuestras webs, aplicar colores, animaciones, formas, distribuciones, entre otras cosas.
 
-		\item \textit{JS}: es un lenguaje de programación que permite a los desarrolladores crear acciones y capturar eventos iniciados por los usuarios en sus sitios webs. Es decir, JavaScript es un lenguaje utilizado para crear pequeños programas que luego son insertados en una página web y en programas más grandes, orientados a objetos mucho más complejos. Con JS podemos crear diferentes efectos e interactuar de manera dinámica con los usuarios.
+		\item \textit{JS}: Es un lenguaje de programación que permite a los desarrolladores crear acciones y capturar eventos iniciados por los usuarios en sus sitios webs. Es decir, JavaScript es un lenguaje utilizado para crear pequeños programas que luego son insertados en una página web y en programas más grandes, orientados a objetos mucho más complejos. Con JS podemos crear diferentes efectos e interactuar de manera dinámica con los usuarios.
 		
-		\item \textit{AngularJS}\footnote{\url{http://www..com/}}: .
+		\item \textit{Bootstrap}\footnote{\url{http://getbootstrap.com/}}: Este framework desarrollado por la gente de Twitter, simplifica el desarrollo de interfaces de usuario web elegantes. 
 		
-		\item \textit{YEOMAN}\footnote{\url{http://www..com/}}: .
+		\item \textit{AngularJS}\footnote{\url{https://angularjs.org/}}: Con este framework evitamos refrescar la página, realizando solicitudes en forma asíncrona y solo modificando sobre el navegador porciones del sitio a los que afectan los cambios producidos por dichas solicitudes .
+		
+		\item Es muy común utilizar varias librerías en los proyectos, tanto para sumar funcionalidades como así también para realizar tareas de testeo, compilación, minificación, entre otras. Para acelerar los procesos es que hemos integrado las herramientas \textit{YEOMAN}\footnote{\url{http://yeoman.io/}}, \textit{Grunt}\footnote{\url{http://bower.io/}} y \textit{Bower}\footnote{\url{http://gruntjs.com/}}, con el fin de poder iniciar un proyecto con una estructura predeterminada ya armada, administrar las dependencias de manera fácil y realizar procesos de compilación, pruebas y minificación rápidamente. 
 
-		\item \textit{Grunt}\footnote{\url{http://www..com/}}: .
-
-		\item \textit{Bower}\footnote{\url{http://www..com/}}: .
 
 	\end{itemize}
 	
@@ -748,14 +748,48 @@ Además Google provee del servicio de Google Analytics muy similar al servicio d
 	\end{itemize}
 
 
+\newpage
 
+
+\section{Estructura del sistema}
+
+
+Resumiendo lo explicado en secciones anteriores, nuestra plataforma está compuesta por un cliente que se conecta al servidor Node JS, el cual consulta datos de su base de datos (NoSQL), y para provisionar estas bases de datos con información de redes sociales se utilizan las APIs propias de estas. De esta manera, logramos la interacción entre los usuarios, el servidor y las redes sociales, generando estadísticas en forma muy ágil, rápida e integral entre varios servicios.
+
+
+% Imagen 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/esquema.png}
+	\medskip
+	\caption{Diagrama representativo de la estructura de componentes que conforma el sistema de Weepo.}
+	\medskip
+\end{figure}
 
 
 \newpage
 
 
 % CAPITULO X
+\section{Puesta en producción}
+
+El desarrollo es muy importante, pero al comenzarlo es crítico tener en mente cómo va a ser la puesta en producción, es decir, dónde vamos a alojar nuestra aplicación. Debemos estar preparados para un posible éxito, y esto significa que el hosting que elijamos debe ser capaz de darnos la oportunidad de escalar los servicios para lograr un rendimiento sostenido.\\
+Por suerte son varias las opciones entre las cuales podemos elegir, entre las más conocidas AWS, Google Cloud Platform y Microsoft Azure. Pero para empezar nos decidimos por OpenShift ya que proveen de un plan gratuito con posibilidad de habilitar planes pagos en forma automática y escalabilidad instantánea de nuestra aplicación cuando sea oportuno, además poder apuntar en forma gratuita el dominio del sitio web de Weepo.
+
+\newpage
+
+
+
+%
+% CAPITULO Y
+%
+\chapter{Diagramas y Esquemas}
+
+
+% CAPITULO X
 \section{Casos de Uso}
+
+En esta secci\'{o}n se muestran algunos de los casos de uso posibles para la plataforma Weepo.\\
 
 \includegraphics[width=0.9\textwidth]{images/casosDeUso.png}
 
@@ -778,14 +812,6 @@ El modelo de datos consistir\'{a} en el siguiente esquema:
 	
 \newpage
 
-
-% CAPITULO X
-\section{Puesta en producción}
-
-El desarrollo es muy importante, pero al comenzarlo es crítico tener en mente cómo va a ser la puesta en producción, es decir, dónde vamos a alojar nuestra aplicación. Debemos estar preparados para un posible éxito, y esto significa que el hosting que elijamos debe ser capaz de darnos la oportunidad de escalar los servicios para lograr un rendimiento sostenido.\\
-Por suerte son varias las opciones entre las cuales podemos elegir, entre las más conocidas AWS, Google Cloud Platform y Microsoft Azure. Pero para empezar nos decidimos por OpenShift ya que proveen de un plan gratuito con posibilidad de habilitar planes pagos en forma automática y escalabilidad instantánea de nuestra aplicación cuando sea oportuno, además poder apuntar en forma gratuita el dominio del sitio web de Weepo.
-
-\newpage
 
 
 
